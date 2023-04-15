@@ -279,9 +279,15 @@ class InboundNearbyConnection: NearbyConnection{
 									  destinationURL: dest)
 			transferredFiles[file.payloadID]=info
 		}
-		let metadata=TransferMetadata(files: transferredFiles.map({$0.value.meta}))
-		DispatchQueue.main.async {
-			self.delegate?.obtainUserConsent(for: metadata, from: self.remoteDeviceInfo!, connection: self)
+		
+        let metadata=TransferMetadata(files: transferredFiles.map({$0.value.meta}))
+		
+        DispatchQueue.main.async {
+            if AppSettings.sharedInstance.IncommingTransferAlertType == 0 {
+                self.delegate?.obtainUserConsentWithAlert(for: metadata, from: self.remoteDeviceInfo!, connection: self)
+            } else {
+                self.delegate?.obtainUserConsent(for: metadata, from: self.remoteDeviceInfo!, connection: self)
+            }
 		}
 	}
 	
@@ -346,6 +352,14 @@ class InboundNearbyConnection: NearbyConnection{
 }
 
 protocol InboundNearbyConnectionDelegate{
-	func obtainUserConsent(for transfer:TransferMetadata, from device:RemoteDeviceInfo, connection:InboundNearbyConnection)
+    /**
+     Show notification when incomming file is available
+     **/
+    func obtainUserConsent(for transfer:TransferMetadata, from device:RemoteDeviceInfo, connection:InboundNearbyConnection)
+    /**
+     Show Alert when incomming file is available
+     **/
+    func obtainUserConsentWithAlert(for transfer:TransferMetadata, from device:RemoteDeviceInfo, connection:InboundNearbyConnection)
 	func connectionWasTerminated(connection:InboundNearbyConnection, error:Error?)
+    func restartMDNS()
 }

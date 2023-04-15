@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="wK9-EO-shX">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Preferences View Controller-->
+        <scene sceneID="jQY-YO-ubo">
+            <objects>
+                <viewController storyboardIdentifier="preferences" id="TJO-Wh-x14" customClass="PreferencesViewController" customModule="NearDrop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="kEX-Oc-bEb">
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="205"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SRA-Qz-1fY">
+                                <rect key="frame" x="18" y="169" width="178" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Show incomming request as " id="Egw-5J-fzz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WcT-hj-wDx">
+                                <rect key="frame" x="358" y="13" width="69" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H6d-AR-LVT">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onSave:" target="TJO-Wh-x14" id="zLq-bs-dM2"/>
+                                </connections>
+                            </button>
+                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ixf-AL-frr">
+                                <rect key="frame" x="211" y="163" width="212" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="UZM-Vw-1Bm">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <objectValues>
+                                        <string>Popup Dialog</string>
+                                        <string>Notification</string>
+                                    </objectValues>
+                                </comboBoxCell>
+                                <connections>
+                                    <action selector="onTypeChange:" target="qKK-QS-zAr" id="DzC-nI-d61"/>
+                                </connections>
+                            </comboBox>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="un8-eJ-ig6">
+                                <rect key="frame" x="278" y="13" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Kpf-gv-Uaz">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onCancel:" target="TJO-Wh-x14" id="Tot-ff-zl3"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e15-WN-QE0">
+                                <rect key="frame" x="18" y="141" width="104" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Computer Name" id="LTu-jy-8jP">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eoC-og-lRP">
+                                <rect key="frame" x="212" y="132" width="208" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="IbY-Q8-hkm">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="cbAlertType" destination="ixf-AL-frr" id="EyG-rT-Tlo"/>
+                        <outlet property="txtComputerName" destination="eoC-og-lRP" id="jGL-NV-296"/>
+                    </connections>
+                </viewController>
+                <customObject id="qKK-QS-zAr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menuItem title="Application" id="hzV-aH-cNn">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Application" id="IBt-5A-tPr">
+                        <items>
+                            <menuItem title="About Application" id="vGt-9N-h69">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="orderFrontStandardAboutPanel:" target="qKK-QS-zAr" id="91V-RH-6gS"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="oO5-cB-bGR"/>
+                            <menuItem title="Preferences…" keyEquivalent="," id="52G-mY-k2d"/>
+                            <menuItem isSeparatorItem="YES" id="e3v-Vh-Oli"/>
+                            <menuItem title="Services" id="gOQ-yX-kye">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Services" systemMenu="services" id="TuM-Gi-mPO"/>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="I85-i1-8IC"/>
+                            <menuItem title="Hide Application" keyEquivalent="h" id="7um-0N-dRK">
+                                <connections>
+                                    <action selector="hide:" target="qKK-QS-zAr" id="ENe-MT-1Sj"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Hide Others" keyEquivalent="h" id="mMJ-Kx-BCh">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="hideOtherApplications:" target="qKK-QS-zAr" id="As9-d9-xTb"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Show All" id="Uc7-0k-Qjf">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="unhideAllApplications:" target="qKK-QS-zAr" id="qDa-6v-z3y"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="A0M-Xg-G2C"/>
+                            <menuItem title="Quit Application" keyEquivalent="q" id="O1t-qQ-Avv">
+                                <connections>
+                                    <action selector="terminate:" target="qKK-QS-zAr" id="U63-vU-Wv3"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+            </objects>
+            <point key="canvasLocation" x="255" y="658.5"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="qc1-tJ-N1V">
+            <objects>
+                <windowController id="wK9-EO-shX" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="N2u-mz-Ubk">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="425" y="462" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
+                        <view key="contentView" id="arq-h0-ig3">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="wK9-EO-shX" id="4av-Gb-1yf"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="TJO-Wh-x14" kind="relationship" relationship="window.shadowedContentViewController" id="chj-Tp-cZG"/>
+                    </connections>
+                </windowController>
+                <customObject id="dft-wr-Fmg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="120" y="292"/>
+        </scene>
+    </scenes>
+</document>

@@ -11,24 +11,21 @@ import UserNotifications
 @main
 class AppDelegate: NSObject, NSApplicationDelegate{
     
+    @IBOutlet weak var mainMenu: NSMenu!
+    @IBOutlet weak var deviceNameMenuItem: NSMenuItem!
+    
     private var connectionManager:NearbyConnectionManager?
     private var statusItem:NSStatusItem?
     
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        let menu=NSMenu()
         
-        menu.addItem(withTitle: NSLocalizedString("VisibleToEveryone", value: "Visible to everyone", comment: ""), action: nil, keyEquivalent: "")
-        menu.addItem(withTitle: String(format: NSLocalizedString("DeviceName", value: "Device name: %@", comment: ""), arguments: [AppSettings.sharedInstance.ComputerName]), action: nil, keyEquivalent: "")
-        menu.addItem(NSMenuItem.separator())
-        //menu.addItem(withTitle: NSLocalizedString("LaunchAtStartup", value: "Launch at Startup", comment: ""), action: nil, keyEquivalent: "")
-        
-        menu.addItem(withTitle: NSLocalizedString("Settings", value: "Settings", comment: ""), action: #selector(showSettings), keyEquivalent: "")
-        menu.addItem(withTitle: NSLocalizedString("Quit", value: "Quit NearDrop", comment: ""), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
+        deviceNameMenuItem.title = String(format: NSLocalizedString("DeviceName", value: "Device name: %@", comment: ""), arguments: [AppSettings.sharedInstance.ComputerName])
         
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusItem?.button?.image = NSImage(named: "MenuBarIcon")
-        statusItem?.menu = menu
+        statusItem?.menu = mainMenu
         
         let nc=UNUserNotificationCenter.current()
         nc.requestAuthorization(options: [.alert, .sound]) { granted, err in
@@ -47,8 +44,8 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         
         
     }
-    
-    @objc func showSettings(){
+
+    @IBAction func showPreferences(_ sender: Any) {
         NSApp.setActivationPolicy(.regular)
         
         let storyboard = NSStoryboard(name: "Storyboard", bundle: nil)
@@ -60,8 +57,8 @@ class AppDelegate: NSObject, NSApplicationDelegate{
 
         vc.window?.center()
         vc.window?.makeKeyAndOrderFront(nil)
-        
     }
+
     
     func restartConnection(){
         connectionManager?.restartMDNS()

@@ -13,13 +13,14 @@ class PreferencesViewController: NSViewController {
     
     @IBOutlet weak var txtComputerName: NSTextField!
     @IBOutlet weak var cbAlertType: NSComboBox!
+    @IBOutlet weak var txtError: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         cbAlertType.selectItem(at: settings.IncommingTransferAlertType)
         txtComputerName.stringValue = settings.ComputerName
-        
+        txtError.stringValue = ""
         
     }
    
@@ -32,19 +33,22 @@ class PreferencesViewController: NSViewController {
     
     @IBAction func onSave(_ sender: Any) {
         
-        if (txtComputerName.stringValue.isEmpty) {
+        if (txtComputerName.stringValue.isEmpty || txtComputerName.stringValue.count <= 3) {
+            txtError.stringValue =  NSLocalizedString("ComputerNameTooShort", comment: "") 
             return
         }
+        
+        txtError.stringValue = ""
         
         let newName = txtComputerName.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         
         if (settings.ComputerName != newName) {
             // restart TCP listener with new computer name
             
+            settings.ComputerName = newName
+            
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
             appDelegate.restartConnection()
-            
-            settings.ComputerName = newName
         }
         
         settings.IncommingTransferAlertType = cbAlertType.indexOfSelectedItem

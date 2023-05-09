@@ -7,6 +7,8 @@
 
 import Foundation
 class AppSettings: NSObject {
+    let IncommingTransferAlertTypeKey = "IncommingTransferAlertType"
+    let ComputerNameKey = "ComputerName"
     
     static let sharedInstance: AppSettings = AppSettings()
     
@@ -22,19 +24,19 @@ class AppSettings: NSObject {
     func loadSettings(){
         let prefs = UserDefaults.standard
         
-        if prefs.object(forKey: "IncommingTransferAlertType") != nil  {
-            IncommingTransferAlertType=prefs.integer(forKey: "IncommingTransferAlertType")
+        if prefs.object(forKey: IncommingTransferAlertTypeKey) != nil  {
+            IncommingTransferAlertType = prefs.integer(forKey: IncommingTransferAlertTypeKey)
         }
         
-        ComputerName = prefs.string(forKey: "ComputerName") ?? Host.current().localizedName!
+        ComputerName = prefs.string(forKey: ComputerNameKey) ?? Host.current().localizedName!
         
     }
     
     func SaveSettings(){
         let prefs = UserDefaults.standard
         
-        prefs.set(IncommingTransferAlertType, forKey: "IncommingTransferAlertType")
-        prefs.set(ComputerName, forKey: "ComputerName")
+        prefs.set(IncommingTransferAlertType, forKey: IncommingTransferAlertTypeKey)
+        prefs.set(ComputerName, forKey: ComputerNameKey)
     }
   
 }

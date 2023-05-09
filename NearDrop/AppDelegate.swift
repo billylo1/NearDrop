@@ -20,8 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        
-        deviceNameMenuItem.title = String(format: NSLocalizedString("DeviceName", value: "Device name: %@", comment: ""), arguments: [AppSettings.sharedInstance.ComputerName])
+        setDeviceNameMenuItem()
         
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusItem?.button?.image = NSImage(named: "MenuBarIcon")
@@ -61,7 +60,12 @@ class AppDelegate: NSObject, NSApplicationDelegate{
 
     
     func restartConnection(){
+        setDeviceNameMenuItem()
         connectionManager?.restartMDNS()
+    }
+    
+    func setDeviceNameMenuItem() {
+        deviceNameMenuItem.title = String(format: NSLocalizedString("DeviceName", value: "Device name: %@", comment: ""), arguments: [AppSettings.sharedInstance.ComputerName])
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {

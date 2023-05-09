@@ -4,6 +4,14 @@
 
 The app lives in your menu bar and saves files to your downloads folder. It's that simple, really.
 
+## Difference between original NearDrop and my implementation
+
+Since author does not want these changes, I will keep them in this repo.
+
+- Implemented configuration.
+- You can change computer name
+- You can change notification type. Instead of MacOS notification you can switch to Alert dialog style
+
 ## Limitations
 
 * **Receive only**. For now. I haven't yet figured out how to make Android turn on the MDNS service and/or show the "a device nearby is sharing" notification.

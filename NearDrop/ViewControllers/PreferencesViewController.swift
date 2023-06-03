@@ -6,14 +6,18 @@
 //
 
 import Cocoa
+import LaunchAtLogin
 
 class PreferencesViewController: NSViewController {
 
+    @objc dynamic var launchAtLogin = LaunchAtLogin.kvo
+    
     private let settings = AppSettings.sharedInstance
     
     @IBOutlet weak var txtComputerName: NSTextField!
     @IBOutlet weak var cbAlertType: NSComboBox!
     @IBOutlet weak var txtError: NSTextField!
+    @IBOutlet weak var cbLaunchAtLogin: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +25,7 @@ class PreferencesViewController: NSViewController {
         cbAlertType.selectItem(at: settings.IncommingTransferAlertType)
         txtComputerName.stringValue = settings.ComputerName
         txtError.stringValue = ""
-        
+        cbLaunchAtLogin.state = (LaunchAtLogin.isEnabled) ? .on : .off
     }
    
     @IBAction func onCancel(_ sender: Any) {
@@ -32,25 +36,28 @@ class PreferencesViewController: NSViewController {
     }
     
     @IBAction func onSave(_ sender: Any) {
-        
+        let appDelegate = NSApplication.shared.delegate as! AppDelegate
+
         if (txtComputerName.stringValue.isEmpty || txtComputerName.stringValue.count <= 3) {
             txtError.stringValue =  NSLocalizedString("ComputerNameTooShort", comment: "") 
             return
         }
         
         txtError.stringValue = ""
-        
+
+        LaunchAtLogin.isEnabled = cbLaunchAtLogin.state == .on
+
         let newName = txtComputerName.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         
         if (settings.ComputerName != newName) {
             // restart TCP listener with new computer name
             
             settings.ComputerName = newName
-            
-            let appDelegate = NSApplication.shared.delegate as! AppDelegate
             appDelegate.restartConnection()
         }
-        
+
+        appDelegate.updateLaunchAtLoginMenuItem()
+
         settings.IncommingTransferAlertType = cbAlertType.indexOfSelectedItem
         settings.SaveSettings()
         

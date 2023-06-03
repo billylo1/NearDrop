@@ -7,12 +7,14 @@
 
 import Cocoa
 import UserNotifications
+import LaunchAtLogin
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate{
     
     @IBOutlet weak var mainMenu: NSMenu!
     @IBOutlet weak var deviceNameMenuItem: NSMenuItem!
+    @IBOutlet weak var launchAtLogin: NSMenuItem!
     
     private var connectionManager:NearbyConnectionManager?
     private var statusItem:NSStatusItem?
@@ -40,7 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         
         nc.setNotificationCategories([incomingTransfersCategory, errorsCategory])
         connectionManager=NearbyConnectionManager()
-        
+        updateLaunchAtLoginMenuItem()
         
     }
 
@@ -92,5 +94,16 @@ class AppDelegate: NSObject, NSApplicationDelegate{
             NSApplication.shared.terminate(nil)
         }
     }
+    
+    func updateLaunchAtLoginMenuItem() {
+        launchAtLogin.state = (LaunchAtLogin.isEnabled) ? .on : .off
+    }
+    
+    @IBAction func launchAtLoginClick(_ sender: Any) {
+        LaunchAtLogin.isEnabled = !LaunchAtLogin.isEnabled
+        updateLaunchAtLoginMenuItem()
+    }
+    
+    
 }
 

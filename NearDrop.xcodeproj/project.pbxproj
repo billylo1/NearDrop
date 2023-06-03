@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		076FB1192A2BDC7000FE62AB /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 076FB1182A2BDC7000FE62AB /* LaunchAtLogin */; };
 		07EF25EB29EA000400860D1B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EF25EA29EA000400860D1B /* AppSettings.swift */; };
 		07EF25F329EA0A0100860D1B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07EF25F229EA0A0100860D1B /* Storyboard.storyboard */; };
 		07EF25FD29EA0F5600860D1B /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EF25FC29EA0F5600860D1B /* PreferencesViewController.swift */; };
@@ -79,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				076FB1192A2BDC7000FE62AB /* LaunchAtLogin in Frameworks */,
 				69DA9A3629E1994C00A442DA /* SwiftECC in Frameworks */,
 				69DA9A2629E189EF00A442DA /* SwiftProtobuf in Frameworks */,
 			);
@@ -203,6 +205,7 @@
 			packageProductDependencies = (
 				69DA9A2529E189EF00A442DA /* SwiftProtobuf */,
 				69DA9A3529E1994C00A442DA /* SwiftECC */,
+				076FB1182A2BDC7000FE62AB /* LaunchAtLogin */,
 			);
 			productName = NearDrop;
 			productReference = 69DA9A0E29E0BF5100A442DA /* NearDrop.app */;
@@ -237,6 +240,7 @@
 			packageReferences = (
 				69DA9A2429E189EF00A442DA /* XCRemoteSwiftPackageReference "swift-protobuf" */,
 				69DA9A3429E1994C00A442DA /* XCRemoteSwiftPackageReference "SwiftECC" */,
+				076FB1172A2BDC7000FE62AB /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 			);
 			productRefGroup = 69DA9A0F29E0BF5100A442DA /* Products */;
 			projectDirPath = "";
@@ -436,6 +440,7 @@
 				DEVELOPMENT_TEAM = FQWFLSELT5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NearDrop/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "NearDrop Plus";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -469,6 +474,7 @@
 				DEVELOPMENT_TEAM = FQWFLSELT5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NearDrop/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "NearDrop Plus";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -512,6 +518,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		076FB1172A2BDC7000FE62AB /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		69DA9A2429E189EF00A442DA /* XCRemoteSwiftPackageReference "swift-protobuf" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-protobuf.git";
@@ -531,6 +545,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		076FB1182A2BDC7000FE62AB /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 076FB1172A2BDC7000FE62AB /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			productName = LaunchAtLogin;
+		};
 		69DA9A2529E189EF00A442DA /* SwiftProtobuf */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 69DA9A2429E189EF00A442DA /* XCRemoteSwiftPackageReference "swift-protobuf" */;

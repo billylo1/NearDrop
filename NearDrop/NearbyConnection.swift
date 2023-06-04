@@ -374,28 +374,28 @@ class NearbyConnection{
         }
     }
     
-    internal func disconnect(){
+    internal func disconnect() {
         connection.send(content: nil, isComplete: true, completion: .contentProcessed({ error in
             self.handleConnectionClosure()
         }))
         connectionClosed=true
     }
     
-    internal func sendDisconnectionAndDisconnect() throws{
+    internal func sendDisconnectionAndDisconnect() throws {
         var offlineFrame=Location_Nearby_Connections_OfflineFrame()
         offlineFrame.version = .v1
         offlineFrame.v1.type = .disconnection
         offlineFrame.v1.disconnection=Location_Nearby_Connections_DisconnectionFrame()
         
-        if encryptionDone{
+        if encryptionDone {
             try encryptAndSendOfflineFrame(offlineFrame)
-        }else{
+        } else {
             sendFrameAsync(try offlineFrame.serializedData())
         }
         disconnect()
     }
     
-    internal func sendUkey2Alert(type:Securegcm_Ukey2Alert.AlertType){
+    internal func sendUkey2Alert(type:Securegcm_Ukey2Alert.AlertType) {
         var alert=Securegcm_Ukey2Alert()
         alert.type=type
         var msg=Securegcm_Ukey2Message()
@@ -411,13 +411,13 @@ class NearbyConnection{
         offlineFrame.v1.type = .keepAlive
         offlineFrame.v1.keepAlive.ack=ack
         
-        do{
-            if encryptionDone{
+        do {
+            if encryptionDone {
                 try encryptAndSendOfflineFrame(offlineFrame)
-            }else{
+            } else {
                 sendFrameAsync(try offlineFrame.serializedData())
             }
-        }catch{
+        } catch {
             print("Error sending KEEP_ALIVE: \(error)")
         }
     }

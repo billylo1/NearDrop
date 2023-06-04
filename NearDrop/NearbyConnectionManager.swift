@@ -150,6 +150,7 @@ class NearbyConnectionManager : NSObject, NetServiceDelegate, InboundNearbyConne
         } else {
             fileStr=String.localizedStringWithFormat(NSLocalizedString("NFiles", value: "%d files", comment: ""), transfer.files.count)
         }
+        
         notificationContent.body = String(format: NSLocalizedString("DeviceSendingFiles", value: "%1$@ is sending you %2$@", comment: ""), arguments: [device.name, fileStr])
         notificationContent.sound = .default
         notificationContent.categoryIdentifier = "INCOMING_TRANSFERS"

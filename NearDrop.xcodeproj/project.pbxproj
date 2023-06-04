@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0746E0372A2D2D6600EA305B /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0746E0362A2D2D6600EA305B /* Extentions.swift */; };
 		076FB1192A2BDC7000FE62AB /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 076FB1182A2BDC7000FE62AB /* LaunchAtLogin */; };
 		07EF25EB29EA000400860D1B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EF25EA29EA000400860D1B /* AppSettings.swift */; };
 		07EF25F329EA0A0100860D1B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07EF25F229EA0A0100860D1B /* Storyboard.storyboard */; };
@@ -45,10 +46,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		070C61FD2A2D4BFC0084EA6C /* securegcm.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = securegcm.proto; sourceTree = "<group>"; };
+		070C61FE2A2D4BFC0084EA6C /* wire_format.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = wire_format.proto; sourceTree = "<group>"; };
+		070C61FF2A2D4BFC0084EA6C /* ukey.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = ukey.proto; sourceTree = "<group>"; };
+		070C62002A2D4BFC0084EA6C /* device_to_device_messages.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = device_to_device_messages.proto; sourceTree = "<group>"; };
+		070C62012A2D4BFC0084EA6C /* offline_wire_formats.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = offline_wire_formats.proto; sourceTree = "<group>"; };
+		070C62022A2D4BFC0084EA6C /* securemessage.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = securemessage.proto; sourceTree = "<group>"; };
+		070C62092A2D4C060084EA6C /* GenerateProtobuf.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = GenerateProtobuf.sh; path = ../../NearDropOriginal/NearDrop/GenerateProtobuf.sh; sourceTree = "<group>"; };
+		0746E0362A2D2D6600EA305B /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		07EF25EA29EA000400860D1B /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		07EF25F229EA0A0100860D1B /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		07EF25FC29EA0F5600860D1B /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
-		07EF25FE29EA122E00860D1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		698DFAE529E2F91A0064F247 /* NearbyConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyConnection.swift; sourceTree = "<group>"; };
 		698DFAED29E353220064F247 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		698DFAEF29E353220064F247 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -89,6 +97,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		070C61FC2A2D4B590084EA6C /* ProtobufSource */ = {
+			isa = PBXGroup;
+			children = (
+				070C62002A2D4BFC0084EA6C /* device_to_device_messages.proto */,
+				070C62012A2D4BFC0084EA6C /* offline_wire_formats.proto */,
+				070C61FD2A2D4BFC0084EA6C /* securegcm.proto */,
+				070C62022A2D4BFC0084EA6C /* securemessage.proto */,
+				070C61FF2A2D4BFC0084EA6C /* ukey.proto */,
+				070C61FE2A2D4BFC0084EA6C /* wire_format.proto */,
+			);
+			name = ProtobufSource;
+			path = Protobuf/ProtobufSource;
+			sourceTree = "<group>";
+		};
 		07EF25E829E9EDA700860D1B /* UNMutableNotification */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				07EF25EA29EA000400860D1B /* AppSettings.swift */,
+				0746E0362A2D2D6600EA305B /* Extentions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -151,11 +174,12 @@
 		69DA9A1029E0BF5100A442DA /* NearDrop */ = {
 			isa = PBXGroup;
 			children = (
-				07EF25FE29EA122E00860D1B /* Info.plist */,
+				070C62092A2D4C060084EA6C /* GenerateProtobuf.sh */,
 				07EF25F129EA09F500860D1B /* Storyboard */,
 				07EF25EC29EA00D800860D1B /* ViewControllers */,
 				07EF25E929E9EE4C00860D1B /* Helpers */,
 				69DA9A2729E18CB500A442DA /* Protobuf */,
+				070C61FC2A2D4B590084EA6C /* ProtobufSource */,
 				07EF25E829E9EDA700860D1B /* UNMutableNotification */,
 				69DA9A1129E0BF5100A442DA /* AppDelegate.swift */,
 				69DA9A1329E0BF5200A442DA /* Assets.xcassets */,
@@ -273,6 +297,7 @@
 			files = (
 				07EF25EB29EA000400860D1B /* AppSettings.swift in Sources */,
 				69DA9A2E29E18CB500A442DA /* ukey.pb.swift in Sources */,
+				0746E0372A2D2D6600EA305B /* Extentions.swift in Sources */,
 				07EF25FD29EA0F5600860D1B /* PreferencesViewController.swift in Sources */,
 				698DFB0329E362140064F247 /* NDNotificationCenterHackery.m in Sources */,
 				69DA9A2329E17F0400A442DA /* InboundNearbyConnection.swift in Sources */,
@@ -437,7 +462,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = FQWFLSELT5;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NearDrop/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "NearDrop Plus";
@@ -471,7 +496,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = FQWFLSELT5;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NearDrop/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "NearDrop Plus";

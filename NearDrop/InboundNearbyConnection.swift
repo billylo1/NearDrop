@@ -10,6 +10,7 @@ import Network
 import CryptoKit
 import CommonCrypto
 import System
+import AppKit
 
 import SwiftECC
 import BigInt
@@ -94,7 +95,9 @@ class InboundNearbyConnection: NearbyConnection{
     override func processFileChunk(frame: Location_Nearby_Connections_PayloadTransferFrame) throws{
         let id=frame.payloadHeader.id
         guard let fileInfo=transferredFiles[id] else { throw NearbyError.protocolError("File payload ID \(id) is not known") }
+        
         let currentOffset=fileInfo.bytesTransferred
+        
         guard frame.payloadChunk.offset==currentOffset else { throw NearbyError.protocolError("Invalid offset into file \(frame.payloadChunk.offset), expected \(currentOffset)") }
         guard currentOffset+Int64(frame.payloadChunk.body.count)<=fileInfo.meta.size else { throw NearbyError.protocolError("Transferred file size exceeds previously specified value") }
         
@@ -102,12 +105,22 @@ class InboundNearbyConnection: NearbyConnection{
             try fileInfo.fileHandle?.write(contentsOf: frame.payloadChunk.body)
             transferredFiles[id]!.bytesTransferred+=Int64(frame.payloadChunk.body.count)
             fileInfo.progress?.completedUnitCount=transferredFiles[id]!.bytesTransferred
-        } else if (frame.payloadChunk.flags & 1)==1 {
+        } else if (frame.payloadChunk.flags & 1) == 1 {
+            
             try fileInfo.fileHandle?.close()
-            transferredFiles[id]!.fileHandle=nil
+            
+            // Open received file
+            
+            if (AppSettings.sharedInstance.AutoOpenSafeFiles && fileInfo.destinationURL.isSafeToOpen) {
+                NSWorkspace.shared.open(fileInfo.destinationURL)
+            }
+            
+            
+            transferredFiles[id]!.fileHandle = nil
             fileInfo.progress?.unpublish()
             transferredFiles.removeValue(forKey: id)
-            if transferredFiles.isEmpty{
+            
+            if transferredFiles.isEmpty {
                 try sendDisconnectionAndDisconnect()
             }
         }
@@ -274,22 +287,27 @@ class InboundNearbyConnection: NearbyConnection{
         guard frame.hasV1, frame.v1.hasIntroduction else { throw NearbyError.requiredFieldMissing }
         currentState = .waitingForUserConsent
         let downloadsDirectory=(try FileManager.default.url(for: .downloadsDirectory, in: .userDomainMask, appropriateFor: nil, create: true)).resolvingSymlinksInPath()
+        
         for file in frame.v1.introduction.fileMetadata{
             var dest=downloadsDirectory.appendingPathComponent(file.name)
-            if FileManager.default.fileExists(atPath: dest.path){
+            
+            if FileManager.default.fileExists(atPath: dest.path) {
                 var counter=1
                 var path:String
                 let ext=dest.pathExtension
                 let baseUrl=dest.deletingPathExtension()
-                repeat{
+                
+                repeat {
                     path="\(baseUrl.path) (\(counter))"
-                    if !ext.isEmpty{
+                    if !ext.isEmpty {
                         path+=".\(ext)"
                     }
                     counter+=1
-                }while FileManager.default.fileExists(atPath: path)
+                } while FileManager.default.fileExists(atPath: path)
+                
                 dest=URL(fileURLWithPath: path)
             }
+            
             let info=InternalFileInfo(meta: FileMetadata(name: file.name, size: file.size, mimeType: file.mimeType),
                                       payloadID: file.payloadID,
                                       destinationURL: dest)

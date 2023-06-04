@@ -2,7 +2,7 @@
 //  PreferencesViewController.swift
 //  NearDrop
 //
-//  Created by XRayAdamo on 4/14/23.
+//  Created by Konstantin Adamov on 4/14/23.
 //
 
 import Cocoa
@@ -18,6 +18,7 @@ class PreferencesViewController: NSViewController {
     @IBOutlet weak var cbAlertType: NSComboBox!
     @IBOutlet weak var txtError: NSTextField!
     @IBOutlet weak var cbLaunchAtLogin: NSButton!
+    @IBOutlet weak var cbAutoOpenFiles: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class PreferencesViewController: NSViewController {
         txtComputerName.stringValue = settings.ComputerName
         txtError.stringValue = ""
         cbLaunchAtLogin.state = (LaunchAtLogin.isEnabled) ? .on : .off
+        cbAutoOpenFiles.state = settings.AutoOpenSafeFiles ? .on : .off
     }
    
     @IBAction func onCancel(_ sender: Any) {
@@ -38,7 +40,9 @@ class PreferencesViewController: NSViewController {
     @IBAction func onSave(_ sender: Any) {
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
-        if (txtComputerName.stringValue.isEmpty || txtComputerName.stringValue.count <= 3) {
+        let newName = txtComputerName.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if (newName.isEmpty || newName.count <= 3) {
             txtError.stringValue =  NSLocalizedString("ComputerNameTooShort", comment: "") 
             return
         }
@@ -46,8 +50,8 @@ class PreferencesViewController: NSViewController {
         txtError.stringValue = ""
 
         LaunchAtLogin.isEnabled = cbLaunchAtLogin.state == .on
-
-        let newName = txtComputerName.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        settings.AutoOpenSafeFiles = cbAutoOpenFiles.state == .on
+        settings.IncommingTransferAlertType = cbAlertType.indexOfSelectedItem
         
         if (settings.ComputerName != newName) {
             // restart TCP listener with new computer name
@@ -57,8 +61,7 @@ class PreferencesViewController: NSViewController {
         }
 
         appDelegate.updateLaunchAtLoginMenuItem()
-
-        settings.IncommingTransferAlertType = cbAlertType.indexOfSelectedItem
+               
         settings.SaveSettings()
         
         // return app activation to accessory (hide dock icon and deactivate app returning focus to previousy active app/window)

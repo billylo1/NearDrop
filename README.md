@@ -16,6 +16,7 @@ Since author does not want these changes, I will keep them in this repo.
 - You can change notification type. Instead of MacOS notification you can switch to Alert dialog style
 - Launch at Login
 - Safe files can be opened automatically. Only Images and Plain Text files can be opened
+- Text and URL can be received. Text can be copied into clipboard, URL can be opened after that in default browser
 
 ## Limitations
 

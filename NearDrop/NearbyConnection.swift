@@ -13,6 +13,7 @@ import System
 
 import SwiftECC
 import BigInt
+import AppKit
 
 class NearbyConnection{
     internal static let SANE_FRAME_LENGTH=5*1024*1024
@@ -234,10 +235,13 @@ class NearbyConnection{
             )
             guard status==kCCSuccess else { fatalError("CCCrypt error: \(status)") }
         })
+        
         decryptedData=decryptedData.prefix(decryptedLength)
         let d2dMsg=try Securegcm_DeviceToDeviceMessage(serializedData: decryptedData)
         guard d2dMsg.hasMessage, d2dMsg.hasSequenceNumber else { throw NearbyError.requiredFieldMissing }
+        
         clientSeq+=1
+        
         guard d2dMsg.sequenceNumber==clientSeq else { throw NearbyError.protocolError("Wrong sequence number. Expected \(clientSeq), got \(d2dMsg.sequenceNumber)") }
         let offlineFrame=try Location_Nearby_Connections_OfflineFrame(serializedData: d2dMsg.message)
         guard offlineFrame.hasV1, offlineFrame.v1.hasType else { throw NearbyError.requiredFieldMissing }
@@ -249,7 +253,8 @@ class NearbyConnection{
             let chunk=payloadTransfer.payloadChunk;
             guard header.hasType, header.hasID else { throw NearbyError.requiredFieldMissing }
             guard payloadTransfer.hasPayloadChunk, chunk.hasOffset, chunk.hasFlags else { throw NearbyError.requiredFieldMissing }
-            if case .bytes = header.type{
+            
+            if case .bytes = header.type {
                 let payloadID=header.id
                 if header.totalSize>InboundNearbyConnection.SANE_FRAME_LENGTH{
                     payloadBuffers.removeValue(forKey: payloadID)
@@ -268,15 +273,28 @@ class NearbyConnection{
                 }
                 if (chunk.flags & 1)==1 {
                     payloadBuffers.removeValue(forKey: payloadID)
-                    let innerFrame=try Sharing_Nearby_Frame(serializedData: buffer as Data)
-                    try processTransferSetupFrame(innerFrame)
+                    if let innerFrame=try? Sharing_Nearby_Frame(serializedData: buffer as Data) {
+                        try processTransferSetupFrame(innerFrame)
+                    } else if let text = String(data: buffer as Data, encoding: .utf8) {
+                        NSPasteboard.general.clearContents()
+                        NSPasteboard.general.setString(text, forType: .string)
+                        
+                        // Open ib Browser is it is URL and OpenURLInBrowser == true
+                        if AppSettings.sharedInstance.OpenURLInBrowser, let url = URL(string: text) {
+                            NSWorkspace.shared.open(url)
+                        }
+                        
+                        try sendDisconnectionAndDisconnect()
+                    } else {
+                        print("Bad data: \(buffer as Data)")
+                    }
                 }
-            }else if case .file = header.type{
+            } else if case .file = header.type{
                 try processFileChunk(frame: payloadTransfer)
             }
-        }else if case .keepAlive = offlineFrame.v1.type{
+        } else if case .keepAlive = offlineFrame.v1.type {
             sendKeepAlive(ack: true)
-        }else{
+        } else {
             print("Unhandled offline frame encrypted: \(offlineFrame)")
         }
     }
@@ -303,12 +321,15 @@ class NearbyConnection{
         let domain=Domain.instance(curve: .EC256r1)
         var clientX=peerKey.ecP256PublicKey.x
         var clientY=peerKey.ecP256PublicKey.y
-        if clientX.count>32{
+        
+        if clientX.count>32 {
             clientX=clientX.suffix(32)
         }
+        
         if clientY.count>32{
             clientY=clientY.suffix(32)
         }
+        
         let key=try ECPublicKey(domain: domain, w: Point(BInt(magnitude: [UInt8](clientX)), BInt(magnitude: [UInt8](clientY))))
         
         let dhs=(try privateKey?.domain.multiplyPoint(key.w, privateKey!.s).x.asMagnitudeBytes())!
@@ -437,8 +458,9 @@ struct RemoteDeviceInfo{
     }
 }
 
-struct TransferMetadata{
-    let files:[FileMetadata]
+enum TransferMetadata{
+    case text(Sharing_Nearby_TextMetadata)
+    case files([FileMetadata])
 }
 
 struct FileMetadata{

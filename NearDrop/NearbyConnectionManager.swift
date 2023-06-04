@@ -109,27 +109,32 @@ class NearbyConnectionManager : NSObject, NetServiceDelegate, InboundNearbyConne
     }
     
     func obtainUserConsentWithAlert(for transfer: TransferMetadata, from device: RemoteDeviceInfo, connection: InboundNearbyConnection) {
-        let fileStr:String
-        
-        if transfer.files.count==1 {
-            fileStr=transfer.files[0].name
-            
-        } else {
-            fileStr = String.localizedStringWithFormat(NSLocalizedString("NFiles", value: "%d files", comment: ""), transfer.files.count)
-        }
-        
-        // Get appropriate icon for file type
-        // this won't work unless file is already in a file system
-        //let image = NSWorkspace.shared.icon(forFile: transfer.files[0].name)
         
         let alert=NSAlert()
         
         alert.alertStyle = .informational
-        alert.messageText = String(format: NSLocalizedString("DeviceSendingFiles", value: "%1$@ is sending you %2$@", comment: ""), arguments: [device.name, fileStr])
-        alert.informativeText = String(format:NSLocalizedString("PinCode", value: "PIN: %@", comment: ""), arguments: [connection.pinCode!])
-        //alert.icon = image
         
-        alert.addButton(withTitle: NSLocalizedString("Accept", value: "Accept", comment: ""))
+        alert.informativeText = String(format:NSLocalizedString("PinCode", value: "PIN: %@", comment: ""), arguments: [connection.pinCode!])
+        
+        switch transfer {
+        case .text(let metadata):
+            alert.messageText = String(format: NSLocalizedString("DeviceSendingText", value: "%1$@ is sending you %2$@", comment: ""), arguments: [device.name, metadata.textTitle])
+            alert.addButton(withTitle: NSLocalizedString("CopyToClipboard", value: "Accept", comment: ""))
+            
+        case .files(let files):
+            alert.addButton(withTitle: NSLocalizedString("Accept", value: "Accept", comment: ""))
+            
+            
+            let fileStr:String
+            if files.count==1 {
+                fileStr=files[0].name
+            } else {
+                fileStr=String.localizedStringWithFormat(NSLocalizedString("NFiles", value: "%d files", comment: ""), files.count)
+            }
+            
+            alert.messageText = String(format: NSLocalizedString("DeviceSendingFiles", value: "%1$@ is sending you %2$@", comment: ""), arguments: [device.name, fileStr])
+        }
+        
         alert.addButton(withTitle: NSLocalizedString("Decline", value: "Decline", comment: ""))
         
         let result=alert.runModal()
@@ -139,23 +144,23 @@ class NearbyConnectionManager : NSObject, NetServiceDelegate, InboundNearbyConne
     
     func obtainUserConsent(for transfer: TransferMetadata, from device: RemoteDeviceInfo, connection: InboundNearbyConnection) {
         let notificationContent=UNMutableNotificationContent()
-        
-        notificationContent.title = "NearDrop"
-        notificationContent.subtitle = String(format:NSLocalizedString("PinCode", value: "PIN: %@", comment: ""), arguments: [connection.pinCode!])
-        
-        let fileStr:String
-        
-        if transfer.files.count==1 {
-            fileStr=transfer.files[0].name
-        } else {
-            fileStr=String.localizedStringWithFormat(NSLocalizedString("NFiles", value: "%d files", comment: ""), transfer.files.count)
+        notificationContent.title="NearDrop"
+        notificationContent.subtitle=String(format:NSLocalizedString("PinCode", value: "PIN: %@", comment: ""), arguments: [connection.pinCode!])
+        switch transfer {
+        case .text(let metadata):
+            notificationContent.body=String(format: NSLocalizedString("DeviceSendingText", value: "%1$@ is sending you \"%2$@\"", comment: ""), arguments: [device.name, metadata.textTitle])
+        case .files(let files):
+            let fileStr:String
+            if files.count==1{
+                fileStr=files[0].name
+            }else{
+                fileStr=String.localizedStringWithFormat(NSLocalizedString("NFiles", value: "%d files", comment: ""), files.count)
+            }
+            notificationContent.body=String(format: NSLocalizedString("DeviceSendingFiles", value: "%1$@ is sending you %2$@", comment: ""), arguments: [device.name, fileStr])
         }
-        
-        notificationContent.body = String(format: NSLocalizedString("DeviceSendingFiles", value: "%1$@ is sending you %2$@", comment: ""), arguments: [device.name, fileStr])
         notificationContent.sound = .default
-        notificationContent.categoryIdentifier = "INCOMING_TRANSFERS"
-        notificationContent.userInfo = ["transferID": connection.id]
-        
+        notificationContent.categoryIdentifier="INCOMING_TRANSFERS"
+        notificationContent.userInfo=["transferID": connection.id]
         NDNotificationCenterHackery.removeDefaultAction(notificationContent)
         
         let notificationReq=UNNotificationRequest(identifier: "transfer_"+connection.id, content: notificationContent, trigger: nil)

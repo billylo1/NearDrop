@@ -32,11 +32,13 @@ class InboundNearbyConnection: NearbyConnection{
     override func handleConnectionClosure() {
         super.handleConnectionClosure()
         currentState = .disconnected
-        do{
+        
+        do {
             try deletePartiallyReceivedFiles()
-        }catch{
+        } catch {
             print("Error deleting partially received files: \(error)")
         }
+        
         DispatchQueue.main.async {
             self.delegate?.connectionWasTerminated(connection: self, error: self.lastError)
         }
@@ -114,7 +116,6 @@ class InboundNearbyConnection: NearbyConnection{
             if (AppSettings.sharedInstance.AutoOpenSafeFiles && fileInfo.destinationURL.isSafeToOpen) {
                 NSWorkspace.shared.open(fileInfo.destinationURL)
             }
-            
             
             transferredFiles[id]!.fileHandle = nil
             fileInfo.progress?.unpublish()
@@ -287,34 +288,34 @@ class InboundNearbyConnection: NearbyConnection{
         guard frame.hasV1, frame.v1.hasIntroduction else { throw NearbyError.requiredFieldMissing }
         currentState = .waitingForUserConsent
         let downloadsDirectory=(try FileManager.default.url(for: .downloadsDirectory, in: .userDomainMask, appropriateFor: nil, create: true)).resolvingSymlinksInPath()
+        let metadata: TransferMetadata
         
-        for file in frame.v1.introduction.fileMetadata{
-            var dest=downloadsDirectory.appendingPathComponent(file.name)
-            
-            if FileManager.default.fileExists(atPath: dest.path) {
-                var counter=1
-                var path:String
-                let ext=dest.pathExtension
-                let baseUrl=dest.deletingPathExtension()
-                
-                repeat {
-                    path="\(baseUrl.path) (\(counter))"
-                    if !ext.isEmpty {
-                        path+=".\(ext)"
-                    }
-                    counter+=1
-                } while FileManager.default.fileExists(atPath: path)
-                
-                dest=URL(fileURLWithPath: path)
+        if let textMetadata = frame.v1.introduction.textMetadata.first {
+            metadata = .text(textMetadata)
+        } else {
+            for file in frame.v1.introduction.fileMetadata{
+                var dest=downloadsDirectory.appendingPathComponent(file.name)
+                if FileManager.default.fileExists(atPath: dest.path){
+                    var counter=1
+                    var path:String
+                    let ext=dest.pathExtension
+                    let baseUrl=dest.deletingPathExtension()
+                    repeat{
+                        path="\(baseUrl.path) (\(counter))"
+                        if !ext.isEmpty{
+                            path+=".\(ext)"
+                        }
+                        counter+=1
+                    }while FileManager.default.fileExists(atPath: path)
+                    dest=URL(fileURLWithPath: path)
+                }
+                let info=InternalFileInfo(meta: FileMetadata(name: file.name, size: file.size, mimeType: file.mimeType),
+                                          payloadID: file.payloadID,
+                                          destinationURL: dest)
+                transferredFiles[file.payloadID]=info
             }
-            
-            let info=InternalFileInfo(meta: FileMetadata(name: file.name, size: file.size, mimeType: file.mimeType),
-                                      payloadID: file.payloadID,
-                                      destinationURL: dest)
-            transferredFiles[file.payloadID]=info
+            metadata = .files(transferredFiles.map({$0.value.meta}))
         }
-        
-        let metadata=TransferMetadata(files: transferredFiles.map({$0.value.meta}))
         
         DispatchQueue.main.async {
             if AppSettings.sharedInstance.IncommingTransferAlertType == 0 {
@@ -323,6 +324,14 @@ class InboundNearbyConnection: NearbyConnection{
                 self.delegate?.obtainUserConsent(for: metadata, from: self.remoteDeviceInfo!, connection: self)
             }
         }
+        //        if case .text = metadata, Preferences.copyToClipboardWithoutConsent{
+        //                self.acceptTransfer()
+        //            } else {
+        //                DispatchQueue.main.async {
+        //                    self.delegate?.obtainUserConsent(for: metadata, from: self.remoteDeviceInfo!, connection: self)
+        //                }
+        //            }
+        //        }
     }
     
     func submitUserConsent(accepted:Bool){

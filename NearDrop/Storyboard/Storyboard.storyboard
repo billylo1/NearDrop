@@ -107,11 +107,20 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kMZ-8I-hi7">
+                                <rect key="frame" x="20" y="104" width="398" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Automatically open URL's in browser" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="f6X-dZ-7lF">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="cbAlertType" destination="ixf-AL-frr" id="EyG-rT-Tlo"/>
                         <outlet property="cbAutoOpenFiles" destination="V0W-Hw-U6K" id="vAi-MQ-9aX"/>
+                        <outlet property="cbAutoOpenURL" destination="kMZ-8I-hi7" id="e7g-cP-wz8"/>
                         <outlet property="cbLaunchAtLogin" destination="a8B-zs-ehC" id="RxT-C3-D1B"/>
                         <outlet property="txtComputerName" destination="eoC-og-lRP" id="jGL-NV-296"/>
                         <outlet property="txtError" destination="qVI-Hk-h5u" id="1bl-d9-zGj"/>

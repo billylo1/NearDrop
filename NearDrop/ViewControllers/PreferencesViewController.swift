@@ -19,6 +19,7 @@ class PreferencesViewController: NSViewController {
     @IBOutlet weak var txtError: NSTextField!
     @IBOutlet weak var cbLaunchAtLogin: NSButton!
     @IBOutlet weak var cbAutoOpenFiles: NSButton!
+    @IBOutlet weak var cbAutoOpenURL: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,7 @@ class PreferencesViewController: NSViewController {
         txtError.stringValue = ""
         cbLaunchAtLogin.state = (LaunchAtLogin.isEnabled) ? .on : .off
         cbAutoOpenFiles.state = settings.AutoOpenSafeFiles ? .on : .off
+        cbAutoOpenURL.state = settings.OpenURLInBrowser ? .on : .off
     }
    
     @IBAction func onCancel(_ sender: Any) {
@@ -51,6 +53,7 @@ class PreferencesViewController: NSViewController {
 
         LaunchAtLogin.isEnabled = cbLaunchAtLogin.state == .on
         settings.AutoOpenSafeFiles = cbAutoOpenFiles.state == .on
+        settings.OpenURLInBrowser = cbAutoOpenURL.state == .on
         settings.IncommingTransferAlertType = cbAlertType.indexOfSelectedItem
         
         if (settings.ComputerName != newName) {

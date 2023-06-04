@@ -8,7 +8,8 @@ The app lives in your menu bar and saves files to your downloads folder. It's th
 
 Since author does not want these changes, I will keep them in this repo.
 
-- Implemented configuration.
+- Implemented settings page.
+![Settings window](/images/settings.png)
 - You can change computer name
 - You can change notification type. Instead of MacOS notification you can switch to Alert dialog style
 - Launch at Login

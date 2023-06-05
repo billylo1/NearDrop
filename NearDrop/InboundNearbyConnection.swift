@@ -292,6 +292,8 @@ class InboundNearbyConnection: NearbyConnection{
         
         if let textMetadata = frame.v1.introduction.textMetadata.first {
             metadata = .text(textMetadata)
+            
+            // Show accepted
         } else {
             for file in frame.v1.introduction.fileMetadata{
                 var dest=downloadsDirectory.appendingPathComponent(file.name)
@@ -315,23 +317,34 @@ class InboundNearbyConnection: NearbyConnection{
                 transferredFiles[file.payloadID]=info
             }
             metadata = .files(transferredFiles.map({$0.value.meta}))
+            
+            
         }
         
         DispatchQueue.main.async {
             if AppSettings.sharedInstance.IncommingTransferAlertType == 0 {
-                self.delegate?.obtainUserConsentWithAlert(for: metadata, from: self.remoteDeviceInfo!, connection: self)
+                
+                if case .text = metadata {
+                    self.acceptTransfer()
+                } else {
+                    self.delegate?.obtainUserConsentWithAlert(for: metadata, from: self.remoteDeviceInfo!, connection: self)
+                }
+                //        if case .text = metadata, Preferences.copyToClipboardWithoutConsent{
+                //                self.acceptTransfer()
+                //            } else {
+                //                DispatchQueue.main.async {
+                //                    self.delegate?.obtainUserConsent(for: metadata, from: self.remoteDeviceInfo!, connection: self)
+                //                }
+                //            }
+                //        }
+                
             } else {
                 self.delegate?.obtainUserConsent(for: metadata, from: self.remoteDeviceInfo!, connection: self)
             }
         }
-        //        if case .text = metadata, Preferences.copyToClipboardWithoutConsent{
-        //                self.acceptTransfer()
-        //            } else {
-        //                DispatchQueue.main.async {
-        //                    self.delegate?.obtainUserConsent(for: metadata, from: self.remoteDeviceInfo!, connection: self)
-        //                }
-        //            }
-        //        }
+        
+        
+        
     }
     
     func submitUserConsent(accepted:Bool){

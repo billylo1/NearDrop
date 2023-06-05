@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0746E0372A2D2D6600EA305B /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0746E0362A2D2D6600EA305B /* Extentions.swift */; };
+		074FEF6C2A2D750D001A6CA2 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074FEF6B2A2D750D001A6CA2 /* TextViewController.swift */; };
+		074FEF6F2A2D780F001A6CA2 /* TextViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074FEF6E2A2D780F001A6CA2 /* TextViewPresenter.swift */; };
+		074FEF712A2D7A38001A6CA2 /* URLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074FEF702A2D7A38001A6CA2 /* URLViewController.swift */; };
+		074FEF732A2D7EE5001A6CA2 /* URLViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074FEF722A2D7EE5001A6CA2 /* URLViewPresenter.swift */; };
 		076FB1192A2BDC7000FE62AB /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 076FB1182A2BDC7000FE62AB /* LaunchAtLogin */; };
 		07EF25EB29EA000400860D1B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EF25EA29EA000400860D1B /* AppSettings.swift */; };
 		07EF25F329EA0A0100860D1B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07EF25F229EA0A0100860D1B /* Storyboard.storyboard */; };
@@ -52,8 +56,11 @@
 		070C62002A2D4BFC0084EA6C /* device_to_device_messages.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = device_to_device_messages.proto; sourceTree = "<group>"; };
 		070C62012A2D4BFC0084EA6C /* offline_wire_formats.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = offline_wire_formats.proto; sourceTree = "<group>"; };
 		070C62022A2D4BFC0084EA6C /* securemessage.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = securemessage.proto; sourceTree = "<group>"; };
-		070C62092A2D4C060084EA6C /* GenerateProtobuf.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = GenerateProtobuf.sh; path = ../../NearDropOriginal/NearDrop/GenerateProtobuf.sh; sourceTree = "<group>"; };
 		0746E0362A2D2D6600EA305B /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		074FEF6B2A2D750D001A6CA2 /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
+		074FEF6E2A2D780F001A6CA2 /* TextViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewPresenter.swift; sourceTree = "<group>"; };
+		074FEF702A2D7A38001A6CA2 /* URLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLViewController.swift; sourceTree = "<group>"; };
+		074FEF722A2D7EE5001A6CA2 /* URLViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLViewPresenter.swift; sourceTree = "<group>"; };
 		07EF25EA29EA000400860D1B /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		07EF25F229EA0A0100860D1B /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		07EF25FC29EA0F5600860D1B /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +118,15 @@
 			path = Protobuf/ProtobufSource;
 			sourceTree = "<group>";
 		};
+		074FEF6D2A2D77FF001A6CA2 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				074FEF6E2A2D780F001A6CA2 /* TextViewPresenter.swift */,
+				074FEF722A2D7EE5001A6CA2 /* URLViewPresenter.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
 		07EF25E829E9EDA700860D1B /* UNMutableNotification */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				07EF25FC29EA0F5600860D1B /* PreferencesViewController.swift */,
+				074FEF6B2A2D750D001A6CA2 /* TextViewController.swift */,
+				074FEF702A2D7A38001A6CA2 /* URLViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -174,7 +192,7 @@
 		69DA9A1029E0BF5100A442DA /* NearDrop */ = {
 			isa = PBXGroup;
 			children = (
-				070C62092A2D4C060084EA6C /* GenerateProtobuf.sh */,
+				074FEF6D2A2D77FF001A6CA2 /* Presenters */,
 				07EF25F129EA09F500860D1B /* Storyboard */,
 				07EF25EC29EA00D800860D1B /* ViewControllers */,
 				07EF25E929E9EE4C00860D1B /* Helpers */,
@@ -299,15 +317,19 @@
 				69DA9A2E29E18CB500A442DA /* ukey.pb.swift in Sources */,
 				0746E0372A2D2D6600EA305B /* Extentions.swift in Sources */,
 				07EF25FD29EA0F5600860D1B /* PreferencesViewController.swift in Sources */,
+				074FEF712A2D7A38001A6CA2 /* URLViewController.swift in Sources */,
+				074FEF6F2A2D780F001A6CA2 /* TextViewPresenter.swift in Sources */,
 				698DFB0329E362140064F247 /* NDNotificationCenterHackery.m in Sources */,
 				69DA9A2329E17F0400A442DA /* InboundNearbyConnection.swift in Sources */,
 				69DA9A1F29E0C0B300A442DA /* NearbyConnectionManager.swift in Sources */,
+				074FEF6C2A2D750D001A6CA2 /* TextViewController.swift in Sources */,
 				69DA9A3029E18CB500A442DA /* device_to_device_messages.pb.swift in Sources */,
 				69DA9A3129E18CB500A442DA /* offline_wire_formats.pb.swift in Sources */,
 				69DA9A1229E0BF5100A442DA /* AppDelegate.swift in Sources */,
 				69DA9A2F29E18CB500A442DA /* wire_format.pb.swift in Sources */,
 				69DA9A3329E18CB500A442DA /* securemessage.pb.swift in Sources */,
 				69DA9A2129E0CC4E00A442DA /* Data+Extensions.swift in Sources */,
+				074FEF732A2D7EE5001A6CA2 /* URLViewPresenter.swift in Sources */,
 				69DA9A3229E18CB500A442DA /* securegcm.pb.swift in Sources */,
 				698DFAE629E2F91A0064F247 /* NearbyConnection.swift in Sources */,
 			);

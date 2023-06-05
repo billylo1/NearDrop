@@ -276,15 +276,21 @@ class NearbyConnection{
                     if let innerFrame=try? Sharing_Nearby_Frame(serializedData: buffer as Data) {
                         try processTransferSetupFrame(innerFrame)
                     } else if let text = String(data: buffer as Data, encoding: .utf8) {
-                        NSPasteboard.general.clearContents()
-                        NSPasteboard.general.setString(text, forType: .string)
-                        
-                        // Open ib Browser is it is URL and OpenURLInBrowser == true
-                        if AppSettings.sharedInstance.OpenURLInBrowser, let url = URL(string: text) {
-                            NSWorkspace.shared.open(url)
-                        }
                         
                         try sendDisconnectionAndDisconnect()
+                        
+                        if let url = URL(string: text) {
+                            if AppSettings.sharedInstance.OpenURLInBrowser {
+                                NSWorkspace.shared.open(url)
+                            } else {
+                                URLViewPresenter().showPresenter(url)
+                            }
+                        } else {
+                            // Show dialog with Text
+                            TextViewPresenter().showPresenter(text)
+                            
+                        }
+                        
                     } else {
                         print("Bad data: \(buffer as Data)")
                     }

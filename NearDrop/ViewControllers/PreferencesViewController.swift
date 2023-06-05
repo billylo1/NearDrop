@@ -36,7 +36,7 @@ class PreferencesViewController: NSViewController {
         // return app activation to accessory (hide dock icon and deactivate app returning focus to previousy active app/window)
         NSApp.setActivationPolicy(.accessory)
 
-        self.view.window?.performClose(self)
+        close()
     }
     
     @IBAction func onSave(_ sender: Any) {
@@ -67,6 +67,10 @@ class PreferencesViewController: NSViewController {
                
         settings.SaveSettings()
         
+        close()
+    }
+    
+    private func close(){
         // return app activation to accessory (hide dock icon and deactivate app returning focus to previousy active app/window)
         NSApp.setActivationPolicy(.accessory)
         

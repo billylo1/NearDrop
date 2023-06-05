@@ -110,20 +110,17 @@ class NearbyConnectionManager : NSObject, NetServiceDelegate, InboundNearbyConne
     
     func obtainUserConsentWithAlert(for transfer: TransferMetadata, from device: RemoteDeviceInfo, connection: InboundNearbyConnection) {
         
-        let alert=NSAlert()
-        
-        alert.alertStyle = .informational
-        
-        alert.informativeText = String(format:NSLocalizedString("PinCode", value: "PIN: %@", comment: ""), arguments: [connection.pinCode!])
         
         switch transfer {
         case .text(let metadata):
-            alert.messageText = String(format: NSLocalizedString("DeviceSendingText", value: "%1$@ is sending you %2$@", comment: ""), arguments: [device.name, metadata.textTitle])
-            alert.addButton(withTitle: NSLocalizedString("CopyToClipboard", value: "Accept", comment: ""))
-            
+            activeConnections[connection.id]?.submitUserConsent(accepted: true)
         case .files(let files):
+
+            let alert=NSAlert()
+
+            alert.alertStyle = .informational
+            alert.informativeText = String(format:NSLocalizedString("PinCode", value: "PIN: %@", comment: ""), arguments: [connection.pinCode!])
             alert.addButton(withTitle: NSLocalizedString("Accept", value: "Accept", comment: ""))
-            
             
             let fileStr:String
             if files.count==1 {
@@ -133,13 +130,11 @@ class NearbyConnectionManager : NSObject, NetServiceDelegate, InboundNearbyConne
             }
             
             alert.messageText = String(format: NSLocalizedString("DeviceSendingFiles", value: "%1$@ is sending you %2$@", comment: ""), arguments: [device.name, fileStr])
+            alert.addButton(withTitle: NSLocalizedString("Decline", value: "Decline", comment: ""))
+            
+            let result=alert.runModal()
+            activeConnections[connection.id]?.submitUserConsent(accepted: result==NSApplication.ModalResponse.alertFirstButtonReturn)
         }
-        
-        alert.addButton(withTitle: NSLocalizedString("Decline", value: "Decline", comment: ""))
-        
-        let result=alert.runModal()
-        
-        activeConnections[connection.id]?.submitUserConsent(accepted: result==NSApplication.ModalResponse.alertFirstButtonReturn)
     }
     
     func obtainUserConsent(for transfer: TransferMetadata, from device: RemoteDeviceInfo, connection: InboundNearbyConnection) {

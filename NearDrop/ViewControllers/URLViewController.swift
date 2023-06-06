@@ -8,7 +8,7 @@
 import Foundation
 import AppKit
 
-class URLViewController : NSViewController {
+class URLViewController : BaseViewController {
     
     var url : URL?
     @IBOutlet weak var txtURL: NSTextField!
@@ -38,9 +38,6 @@ class URLViewController : NSViewController {
         close()
     }
     
-    private func close(){
-        NSApp.setActivationPolicy(.accessory)
-        self.view.window?.performClose(self)
-    }
+    
     
 }

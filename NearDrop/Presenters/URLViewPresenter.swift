@@ -27,6 +27,8 @@ class URLViewPresenter {
             vc.window?.center()
             vc.window?.makeKeyAndOrderFront(nil)
             
+            GlobalWindowManager.sharedInstance.registerWindow(window: controller!)
+            
         }
     }
 }

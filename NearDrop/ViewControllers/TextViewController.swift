@@ -9,7 +9,7 @@ import Foundation
 import AppKit
 
 
-class TextViewController : NSViewController {
+class TextViewController : BaseViewController {
     
     var text:String = ""
     
@@ -47,15 +47,9 @@ class TextViewController : NSViewController {
         close()
     }
     
-    private func close(){
-        NSApp.setActivationPolicy(.accessory)
-        self.view.window?.performClose(self)
-    }
-    
     func setText(_ text:String) {
         self.text = text
         
         txtText.stringValue = self.text
-        
     }
 }

@@ -10,7 +10,7 @@ import AppKit
 
 // Wrapper to show accepted text and allow user to copy, save as file or cancel
 class TextViewPresenter {
-    func showPresenter(_ text:String){
+    func showPresenter(_ text:String, remoteDeviceInfo: RemoteDeviceInfo){
         DispatchQueue.main.async {
             
             NSApp.setActivationPolicy(.regular)
@@ -23,6 +23,8 @@ class TextViewPresenter {
             NSApp.activate(ignoringOtherApps: true)
             let controller = vc.contentViewController as? TextViewController
             controller?.setText(text)
+            controller?.txtMessage.stringValue = String(format: NSLocalizedString("DeviceSendingText", comment: ""), arguments: [remoteDeviceInfo.name])
+            
             
             vc.window?.center()
             vc.window?.makeKeyAndOrderFront(nil)

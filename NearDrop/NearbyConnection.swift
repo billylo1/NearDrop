@@ -283,11 +283,11 @@ class NearbyConnection{
                             if AppSettings.sharedInstance.OpenURLInBrowser {
                                 NSWorkspace.shared.open(url)
                             } else {
-                                URLViewPresenter().showPresenter(url)
+                                URLViewPresenter().showPresenter(url, remoteDeviceInfo: remoteDeviceInfo!)
                             }
                         } else {
                             // Show dialog with Text
-                            TextViewPresenter().showPresenter(text)
+                            TextViewPresenter().showPresenter(text, remoteDeviceInfo: remoteDeviceInfo!)
                             
                         }
                         

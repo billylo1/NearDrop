@@ -142,7 +142,7 @@ class InboundNearbyConnection: NearbyConnection{
         
         let rawDeviceType:Int=Int(endpointInfo[0] & 7) >> 1
         
-        remoteDeviceInfo=RemoteDeviceInfo(name: deviceName, type: RemoteDeviceInfo.DeviceType.fromRawValue(value: rawDeviceType))
+        remoteDeviceInfo = RemoteDeviceInfo(name: deviceName, type: RemoteDeviceInfo.DeviceType.fromRawValue(value: rawDeviceType))
         currentState = .receivedConnectionRequest
     }
     
@@ -363,12 +363,15 @@ class InboundNearbyConnection: NearbyConnection{
                 FileManager.default.createFile(atPath: file.destinationURL.path, contents: nil)
                 let handle=try FileHandle(forWritingTo: file.destinationURL)
                 transferredFiles[id]!.fileHandle=handle
+                
                 let progress=Progress()
+                
                 progress.fileURL=file.destinationURL
                 progress.totalUnitCount=file.meta.size
                 progress.kind = .file
                 progress.isPausable=false
                 progress.publish()
+                
                 transferredFiles[id]!.progress=progress
                 transferredFiles[id]!.created=true
             }

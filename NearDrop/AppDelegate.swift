@@ -16,8 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     @IBOutlet weak var deviceNameMenuItem: NSMenuItem!
     @IBOutlet weak var launchAtLogin: NSMenuItem!
     
-    private var connectionManager:NearbyConnectionManager?
-    private var statusItem:NSStatusItem?
+    private var connectionManager: NearbyConnectionManager?
+    private var statusItem: NSStatusItem?
     
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {

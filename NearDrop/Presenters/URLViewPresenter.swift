@@ -9,7 +9,7 @@ import Foundation
 import AppKit
 
 class URLViewPresenter {
-    func showPresenter(_ url:URL){
+    func showPresenter(_ url:URL, remoteDeviceInfo: RemoteDeviceInfo){
         DispatchQueue.main.async {
             
             NSApp.setActivationPolicy(.regular)
@@ -22,6 +22,7 @@ class URLViewPresenter {
             NSApp.activate(ignoringOtherApps: true)
             let controller = vc.contentViewController as? URLViewController
             controller?.setURL(url)
+            controller?.txtMessage.stringValue = String(format: NSLocalizedString("DeviceSendingUrl", comment: ""), arguments: [remoteDeviceInfo.name])
             
             vc.window?.center()
             vc.window?.makeKeyAndOrderFront(nil)

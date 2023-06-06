@@ -28,6 +28,22 @@ class TextViewController : NSViewController {
     }
     
     @IBAction func onSaveAsClick(_ sender: Any) {
+        let savePanel = NSSavePanel()
+        savePanel.canCreateDirectories = true
+        savePanel.showsTagField = false
+        savePanel.nameFieldStringValue = "shared text.txt"
+        savePanel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.modalPanelWindow)))
+        
+        if (savePanel.runModal() == .OK){
+            if let result = savePanel.url {
+                do {
+                    try text.write(to: result, atomically: true, encoding: String.Encoding.utf8)
+                } catch {
+                    
+                }
+            }
+        }
+        
         close()
     }
     

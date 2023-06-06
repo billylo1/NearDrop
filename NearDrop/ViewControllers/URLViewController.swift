@@ -32,6 +32,12 @@ class URLViewController : NSViewController {
         close()
     }
     
+    @IBAction func onCopyCLick(_ sender: Any) {
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.setString(url!.absoluteString, forType: .string)
+        close()
+    }
+    
     private func close(){
         NSApp.setActivationPolicy(.accessory)
         self.view.window?.performClose(self)

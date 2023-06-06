@@ -15,10 +15,10 @@ class NearbyConnectionManager : NSObject, NetServiceDelegate, InboundNearbyConne
     
     
     
-    private var tcpListener:NWListener;
-    private let endpointID:[UInt8]=generateEndpointID()
-    private var mdnsService:NetService?
-    private var activeConnections:[String:InboundNearbyConnection]=[:]
+    private var tcpListener : NWListener;
+    private let endpointID : [UInt8]=generateEndpointID()
+    private var mdnsService : NetService?
+    private var activeConnections : [String:InboundNearbyConnection]=[:]
     
     override init() {
         tcpListener=try! NWListener(using: NWParameters(tls: .none))
@@ -112,7 +112,7 @@ class NearbyConnectionManager : NSObject, NetServiceDelegate, InboundNearbyConne
         
         
         switch transfer {
-        case .text(let metadata):
+        case .text :
             activeConnections[connection.id]?.submitUserConsent(accepted: true)
         case .files(let files):
 
@@ -138,28 +138,32 @@ class NearbyConnectionManager : NSObject, NetServiceDelegate, InboundNearbyConne
     }
     
     func obtainUserConsent(for transfer: TransferMetadata, from device: RemoteDeviceInfo, connection: InboundNearbyConnection) {
-        let notificationContent=UNMutableNotificationContent()
-        notificationContent.title="NearDrop"
-        notificationContent.subtitle=String(format:NSLocalizedString("PinCode", value: "PIN: %@", comment: ""), arguments: [connection.pinCode!])
+        
         switch transfer {
-        case .text(let metadata):
-            notificationContent.body=String(format: NSLocalizedString("DeviceSendingText", value: "%1$@ is sending you \"%2$@\"", comment: ""), arguments: [device.name, metadata.textTitle])
+        case .text:
+            activeConnections[connection.id]?.submitUserConsent(accepted: true)
         case .files(let files):
+            let notificationContent=UNMutableNotificationContent()
+            notificationContent.title="NearDrop"
+            notificationContent.subtitle=String(format:NSLocalizedString("PinCode", value: "PIN: %@", comment: ""), arguments: [connection.pinCode!])
             let fileStr:String
-            if files.count==1{
+            
+            if files.count==1 {
                 fileStr=files[0].name
-            }else{
+            } else {
                 fileStr=String.localizedStringWithFormat(NSLocalizedString("NFiles", value: "%d files", comment: ""), files.count)
             }
+            
             notificationContent.body=String(format: NSLocalizedString("DeviceSendingFiles", value: "%1$@ is sending you %2$@", comment: ""), arguments: [device.name, fileStr])
+            notificationContent.sound = .default
+            notificationContent.categoryIdentifier="INCOMING_TRANSFERS"
+            notificationContent.userInfo=["transferID": connection.id]
+            NDNotificationCenterHackery.removeDefaultAction(notificationContent)
+            
+            let notificationReq=UNNotificationRequest(identifier: "transfer_"+connection.id, content: notificationContent, trigger: nil)
+            UNUserNotificationCenter.current().add(notificationReq)
         }
-        notificationContent.sound = .default
-        notificationContent.categoryIdentifier="INCOMING_TRANSFERS"
-        notificationContent.userInfo=["transferID": connection.id]
-        NDNotificationCenterHackery.removeDefaultAction(notificationContent)
         
-        let notificationReq=UNNotificationRequest(identifier: "transfer_"+connection.id, content: notificationContent, trigger: nil)
-        UNUserNotificationCenter.current().add(notificationReq)
     }
     
     func connectionWasTerminated(connection:InboundNearbyConnection, error:Error?) {

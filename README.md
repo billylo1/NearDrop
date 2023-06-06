@@ -13,10 +13,10 @@ Since author does not want these changes, I will keep them in this repo.
 - Implemented settings page.
 ![Settings window](/images/settings.png)
 - You can change computer name
-- You can change notification type. Instead of MacOS notification you can switch to Alert dialog style
+- You can change notification type for incoming file requests. Instead of MacOS notification you can switch to Alert dialog style
 - Launch at Login
 - Safe files can be opened automatically. Only Images and Plain Text files can be opened
-- Text and URL can be received. Text can be copied into clipboard, URL can be opened after that in default browser
+- Text and URL can be received. Both will be opened in separate window where user can copy, open in browser or save text as a file
 
 ## Limitations
 

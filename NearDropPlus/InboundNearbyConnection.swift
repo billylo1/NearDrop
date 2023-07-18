@@ -333,15 +333,6 @@ class InboundNearbyConnection: NearbyConnection{
                         self.delegate?.obtainUserConsentWithAlert(for: metadata, from: self.remoteDeviceInfo!, connection: self)
                     }
                 }
-                //        if case .text = metadata, Preferences.copyToClipboardWithoutConsent{
-                //                self.acceptTransfer()
-                //            } else {
-                //                DispatchQueue.main.async {
-                //                    self.delegate?.obtainUserConsent(for: metadata, from: self.remoteDeviceInfo!, connection: self)
-                //                }
-                //            }
-                //        }
-                
             } else {
                 if AppSettings.sharedInstance.AutoAcceptFiles {
                     self.acceptTransfer()

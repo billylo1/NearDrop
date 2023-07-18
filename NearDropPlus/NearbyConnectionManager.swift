@@ -80,7 +80,7 @@ class NearbyConnectionManager : NSObject, NetServiceDelegate, InboundNearbyConne
         
         // 1 byte: Version(3 bits)|Visibility(1 bit)|Device Type(3 bits)|Reserved(1 bits)
         // Device types: unknown=0, phone=1, tablet=2, laptop=3
-        var endpointInfo:[UInt8]=[3 << 1]
+        var endpointInfo:[UInt8] = [3 << 1]
         
         // 16 bytes: unknown random bytes
         for _ in 0...15{

@@ -32,6 +32,8 @@ class PreferencesViewController: NSViewController {
         cbAutoOpenFiles.state = settings.AutoOpenSafeFiles ? .on : .off
         cbAutoOpenURL.state = settings.OpenURLInBrowser ? .on : .off
         cbAutoAcceptFiles.state = settings.AutoAcceptFiles ? .on : .off
+        
+        cbAlertType.isEnabled = cbAutoAcceptFiles.state == .off
     }
    
     @IBAction func onCancel(_ sender: Any) {
@@ -72,6 +74,11 @@ class PreferencesViewController: NSViewController {
         
         close()
     }
+    
+    @IBAction func onAcceptAllChanged(_ sender: Any) {
+        cbAlertType.isEnabled = cbAutoAcceptFiles.state == .off
+    }
+    
     
     private func close(){
         // return app activation to accessory (hide dock icon and deactivate app returning focus to previousy active app/window)

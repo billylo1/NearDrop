@@ -9,9 +9,9 @@
         <!--Preferences View Controller-->
         <scene sceneID="jQY-YO-ubo">
             <objects>
-                <viewController storyboardIdentifier="preferences" id="TJO-Wh-x14" customClass="PreferencesViewController" customModule="NearDrop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="preferences" id="TJO-Wh-x14" customClass="PreferencesViewController" customModule="NearDropPlus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="kEX-Oc-bEb">
-                        <rect key="frame" x="0.0" y="0.0" width="473" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="473" height="269"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WcT-hj-wDx">
@@ -49,7 +49,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a8B-zs-ehC">
-                                <rect key="frame" x="20" y="240" width="435" height="20"/>
+                                <rect key="frame" x="20" y="239" width="435" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Launch at Login" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="Sur-9e-IHf">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -57,7 +57,7 @@ Gw
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SRA-Qz-1fY">
-                                <rect key="frame" x="18" y="210" width="200" height="16"/>
+                                <rect key="frame" x="18" y="183" width="200" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Show incomming file request as " id="Egw-5J-fzz">
                                     <font key="font" metaFont="system"/>
@@ -66,7 +66,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ixf-AL-frr">
-                                <rect key="frame" x="244" y="204" width="212" height="23"/>
+                                <rect key="frame" x="244" y="177" width="212" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="UZM-Vw-1Bm">
                                     <font key="font" metaFont="system"/>
@@ -82,7 +82,7 @@ Gw
                                 </connections>
                             </comboBox>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e15-WN-QE0">
-                                <rect key="frame" x="18" y="182" width="104" height="16"/>
+                                <rect key="frame" x="18" y="155" width="104" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Computer Name" id="LTu-jy-8jP">
                                     <font key="font" metaFont="system"/>
@@ -90,24 +90,19 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V0W-Hw-U6K">
-                                <rect key="frame" x="20" y="118" width="435" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Automatically open safe files (Images/Text)" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="OzV-Pm-DHr">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K65-N7-dF6">
-                                <rect key="frame" x="20" y="140" width="435" height="18"/>
+                                <rect key="frame" x="20" y="206" width="435" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Automatically accept all files" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="Bmp-6p-YgB">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="onAcceptAllChanged:" target="TJO-Wh-x14" id="oUo-Y2-zSG"/>
+                                </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eoC-og-lRP">
-                                <rect key="frame" x="245" y="177" width="208" height="21"/>
+                                <rect key="frame" x="245" y="150" width="208" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="IbY-Q8-hkm">
                                     <font key="font" metaFont="system"/>
@@ -115,8 +110,16 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V0W-Hw-U6K">
+                                <rect key="frame" x="20" y="110" width="435" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Automatically open safe files (Images/Text)" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="OzV-Pm-DHr">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kMZ-8I-hi7">
-                                <rect key="frame" x="20" y="96" width="435" height="18"/>
+                                <rect key="frame" x="20" y="88" width="435" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Automatically open URL's in browser" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="f6X-dZ-7lF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -182,7 +185,7 @@ Gw
                 </menuItem>
                 <userDefaultsController representsSharedInstance="YES" id="a7H-V2-71Y"/>
             </objects>
-            <point key="canvasLocation" x="241.5" y="709"/>
+            <point key="canvasLocation" x="241.5" y="708.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="qc1-tJ-N1V">
@@ -237,7 +240,7 @@ Gw
         <!--Text-->
         <scene sceneID="X6R-3S-cpy">
             <objects>
-                <viewController title="Text" id="Ofi-S0-2K7" customClass="TextViewController" customModule="NearDrop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Text" id="Ofi-S0-2K7" customClass="TextViewController" customModule="NearDropPlus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="KcW-L7-xzt">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="380"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -335,7 +338,7 @@ Gw
         <!--URL-->
         <scene sceneID="od7-Vb-vyf">
             <objects>
-                <viewController title="URL" id="n3N-aY-O40" customClass="URLViewController" customModule="NearDrop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="URL" id="n3N-aY-O40" customClass="URLViewController" customModule="NearDropPlus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="9aI-wu-h8Z">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="126"/>
                         <autoresizingMask key="autoresizingMask"/>

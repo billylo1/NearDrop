@@ -15,6 +15,7 @@ Since author does not want these changes, I will keep them in this repo.
 - You can change computer name
 - You can change notification type for incoming file requests. Instead of MacOS notification you can switch to Alert dialog style
 - Launch at Login
+- Files can be accepted and downloaded into Downloads folder automatically
 - Safe files can be opened automatically. Only Images and Plain Text files can be opened
 - Text and URL can be received. Both will be opened in separate window where user can copy, open in browser or save text as a file
 
@@ -26,23 +27,9 @@ Since author does not want these changes, I will keep them in this repo.
 
 ## Installation
 
-TBD
+Download .zip file from release page. Extract it and copy NerDropPlus.app to Applications folder.
 
 ## Contributing
 
 - Try to follow common patterns
 - Always document your PR
-
-## FAQ
-
-#### Why is the app not notarized?
-
-Because I don't want to pay Apple $99 a year for the privilege of developing macOS apps and oppose their idea of security.
-
-#### Why is this not on the app store?
-
-Because I don't want to pay Apple $99 a year for the privilege of developing macOS apps. I also don't want to have to go through the review process.
-
-#### Why not the other way around, i.e. AirDrop on Android?
-
-While I am an Android developer, and I have looked into this, this is nigh-impossible. AirDrop uses [AWDL](https://stackoverflow.com/questions/19587701/what-is-awdl-apple-wireless-direct-link-and-how-does-it-work), Apple's own proprietary take on peer-to-peer Wi-Fi. This works on top of 802.11 itself, the low-level Wi-Fi protocol, and thus can not be implemented without messing around with the Wi-Fi adapter drivers and raw packets and all that. It might be possible on Android, but it would at the very least require root and possibly a custom kernel. There is [an open-source implementation of AWDL and AirDrop for Linux](https://owlink.org/code/).

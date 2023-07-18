@@ -20,6 +20,7 @@ class PreferencesViewController: NSViewController {
     @IBOutlet weak var cbLaunchAtLogin: NSButton!
     @IBOutlet weak var cbAutoOpenFiles: NSButton!
     @IBOutlet weak var cbAutoOpenURL: NSButton!
+    @IBOutlet weak var cbAutoAcceptFiles: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,7 @@ class PreferencesViewController: NSViewController {
         cbLaunchAtLogin.state = (LaunchAtLogin.isEnabled) ? .on : .off
         cbAutoOpenFiles.state = settings.AutoOpenSafeFiles ? .on : .off
         cbAutoOpenURL.state = settings.OpenURLInBrowser ? .on : .off
+        cbAutoAcceptFiles.state = settings.AutoAcceptFiles ? .on : .off
     }
    
     @IBAction func onCancel(_ sender: Any) {
@@ -54,6 +56,7 @@ class PreferencesViewController: NSViewController {
         LaunchAtLogin.isEnabled = cbLaunchAtLogin.state == .on
         settings.AutoOpenSafeFiles = cbAutoOpenFiles.state == .on
         settings.OpenURLInBrowser = cbAutoOpenURL.state == .on
+        settings.AutoAcceptFiles = cbAutoAcceptFiles.state == .on
         settings.IncommingTransferAlertType = cbAlertType.indexOfSelectedItem
         
         if (settings.ComputerName != newName) {

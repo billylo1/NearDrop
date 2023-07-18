@@ -327,7 +327,11 @@ class InboundNearbyConnection: NearbyConnection{
                 if case .text = metadata {
                     self.acceptTransfer()
                 } else {
-                    self.delegate?.obtainUserConsentWithAlert(for: metadata, from: self.remoteDeviceInfo!, connection: self)
+                    if AppSettings.sharedInstance.AutoAcceptFiles {
+                        self.acceptTransfer()
+                    } else {
+                        self.delegate?.obtainUserConsentWithAlert(for: metadata, from: self.remoteDeviceInfo!, connection: self)
+                    }
                 }
                 //        if case .text = metadata, Preferences.copyToClipboardWithoutConsent{
                 //                self.acceptTransfer()
@@ -339,7 +343,11 @@ class InboundNearbyConnection: NearbyConnection{
                 //        }
                 
             } else {
-                self.delegate?.obtainUserConsent(for: metadata, from: self.remoteDeviceInfo!, connection: self)
+                if AppSettings.sharedInstance.AutoAcceptFiles {
+                    self.acceptTransfer()
+                } else {
+                    self.delegate?.obtainUserConsent(for: metadata, from: self.remoteDeviceInfo!, connection: self)
+                }
             }
         }
         

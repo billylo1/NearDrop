@@ -91,17 +91,17 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V0W-Hw-U6K">
-                                <rect key="frame" x="20" y="126" width="435" height="18"/>
+                                <rect key="frame" x="20" y="118" width="435" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Automatically open safe files (Images/Text)" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="OzV-Pm-DHr">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kMZ-8I-hi7">
-                                <rect key="frame" x="20" y="104" width="435" height="18"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K65-N7-dF6">
+                                <rect key="frame" x="20" y="140" width="435" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Automatically open URL's in browser" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="f6X-dZ-7lF">
+                                <buttonCell key="cell" type="check" title="Automatically accept all files" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="Bmp-6p-YgB">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -115,10 +115,19 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kMZ-8I-hi7">
+                                <rect key="frame" x="20" y="96" width="435" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Automatically open URL's in browser" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="f6X-dZ-7lF">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="cbAlertType" destination="ixf-AL-frr" id="EyG-rT-Tlo"/>
+                        <outlet property="cbAutoAcceptFiles" destination="K65-N7-dF6" id="TFm-u1-5je"/>
                         <outlet property="cbAutoOpenFiles" destination="V0W-Hw-U6K" id="vAi-MQ-9aX"/>
                         <outlet property="cbAutoOpenURL" destination="kMZ-8I-hi7" id="e7g-cP-wz8"/>
                         <outlet property="cbLaunchAtLogin" destination="a8B-zs-ehC" id="RxT-C3-D1B"/>

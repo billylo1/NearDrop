@@ -109,8 +109,6 @@ class NearbyConnectionManager : NSObject, NetServiceDelegate, InboundNearbyConne
     }
     
     func obtainUserConsentWithAlert(for transfer: TransferMetadata, from device: RemoteDeviceInfo, connection: InboundNearbyConnection) {
-        
-        
         switch transfer {
         case .text :
             activeConnections[connection.id]?.submitUserConsent(accepted: true)

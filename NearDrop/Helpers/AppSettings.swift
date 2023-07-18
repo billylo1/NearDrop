@@ -11,6 +11,7 @@ class AppSettings: NSObject {
     private let ComputerNameKey = "ComputerName"
     private let AutoOpenSafeFilesKey = "AutoOpenSafeFiles"
     private let OpenURLInBrowserKey = "OpenURLInBrowser"
+    private let AutoAcceptFilesKey = "AutoAcceptFiles"
     
     static let sharedInstance: AppSettings = AppSettings()
     
@@ -18,6 +19,7 @@ class AppSettings: NSObject {
     var IncommingTransferAlertType : Int = 0
     var AutoOpenSafeFiles : Bool = false
     var OpenURLInBrowser : Bool = false
+    var AutoAcceptFiles : Bool = false
     
     fileprivate override init() {
         super.init()
@@ -32,6 +34,7 @@ class AppSettings: NSObject {
             IncommingTransferAlertType = prefs.integer(forKey: IncommingTransferAlertTypeKey)
         }
         
+        AutoAcceptFiles = prefs.object(forKey: AutoAcceptFilesKey) as? Bool ?? false
         AutoOpenSafeFiles = prefs.object(forKey: AutoOpenSafeFilesKey) as? Bool ?? false
         OpenURLInBrowser = prefs.object(forKey: OpenURLInBrowserKey) as? Bool ?? false
         ComputerName = prefs.string(forKey: ComputerNameKey) ?? Host.current().localizedName!
@@ -45,6 +48,7 @@ class AppSettings: NSObject {
         prefs.set(ComputerName, forKey: ComputerNameKey)
         prefs.set(AutoOpenSafeFiles, forKey: AutoOpenSafeFilesKey)
         prefs.set(OpenURLInBrowser, forKey: OpenURLInBrowserKey)
+        prefs.set(AutoAcceptFiles, forKey: AutoAcceptFilesKey)
     }
   
 }

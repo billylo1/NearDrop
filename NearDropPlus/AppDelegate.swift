@@ -37,10 +37,9 @@ class AppDelegate: NSObject, NSApplicationDelegate{
             }
         }
         
-        let incomingTransfersCategory=NDNotificationCenterHackery.hackedNotificationCategory()
         let errorsCategory=UNNotificationCategory(identifier: "ERRORS", actions: [], intentIdentifiers: [])
         
-        nc.setNotificationCategories([incomingTransfersCategory, errorsCategory])
+        nc.setNotificationCategories([errorsCategory])
         connectionManager=NearbyConnectionManager()
         updateLaunchAtLoginMenuItem()
         

@@ -31,9 +31,9 @@ class NearbyConnectionManager : NSObject, NetServiceDelegate, InboundNearbyConne
     
     func restartMDNS() {
         if (!activeConnections.isEmpty) {
-            // Reject all active connections
+            // Disconnect all active connections
             activeConnections.forEach { (key: String, value: InboundNearbyConnection) in
-                value.submitUserConsent(accepted: false)
+                value.disconnect()
             }
         }
         
@@ -108,62 +108,6 @@ class NearbyConnectionManager : NSObject, NetServiceDelegate, InboundNearbyConne
         mdnsService?.publish()
     }
     
-    func obtainUserConsentWithAlert(for transfer: TransferMetadata, from device: RemoteDeviceInfo, connection: InboundNearbyConnection) {
-        switch transfer {
-        case .text :
-            activeConnections[connection.id]?.submitUserConsent(accepted: true)
-        case .files(let files):
-
-            let alert=NSAlert()
-
-            alert.alertStyle = .informational
-            alert.informativeText = String(format:NSLocalizedString("PinCode", value: "PIN: %@", comment: ""), arguments: [connection.pinCode!])
-            alert.addButton(withTitle: NSLocalizedString("Accept", value: "Accept", comment: ""))
-            
-            let fileStr:String
-            if files.count==1 {
-                fileStr=files[0].name
-            } else {
-                fileStr=String.localizedStringWithFormat(NSLocalizedString("NFiles", value: "%d files", comment: ""), files.count)
-            }
-            
-            alert.messageText = String(format: NSLocalizedString("DeviceSendingFiles", value: "%1$@ is sending you %2$@", comment: ""), arguments: [device.name, fileStr])
-            alert.addButton(withTitle: NSLocalizedString("Decline", value: "Decline", comment: ""))
-            
-            let result=alert.runModal()
-            activeConnections[connection.id]?.submitUserConsent(accepted: result==NSApplication.ModalResponse.alertFirstButtonReturn)
-        }
-    }
-    
-    func obtainUserConsent(for transfer: TransferMetadata, from device: RemoteDeviceInfo, connection: InboundNearbyConnection) {
-        
-        switch transfer {
-        case .text:
-            activeConnections[connection.id]?.submitUserConsent(accepted: true)
-        case .files(let files):
-            let notificationContent=UNMutableNotificationContent()
-            notificationContent.title="NearDrop"
-            notificationContent.subtitle=String(format:NSLocalizedString("PinCode", value: "PIN: %@", comment: ""), arguments: [connection.pinCode!])
-            let fileStr:String
-            
-            if files.count==1 {
-                fileStr=files[0].name
-            } else {
-                fileStr=String.localizedStringWithFormat(NSLocalizedString("NFiles", value: "%d files", comment: ""), files.count)
-            }
-            
-            notificationContent.body=String(format: NSLocalizedString("DeviceSendingFiles", value: "%1$@ is sending you %2$@", comment: ""), arguments: [device.name, fileStr])
-            notificationContent.sound = .default
-            notificationContent.categoryIdentifier="INCOMING_TRANSFERS"
-            notificationContent.userInfo=["transferID": connection.id]
-            NDNotificationCenterHackery.removeDefaultAction(notificationContent)
-            
-            let notificationReq=UNNotificationRequest(identifier: "transfer_"+connection.id, content: notificationContent, trigger: nil)
-            UNUserNotificationCenter.current().add(notificationReq)
-        }
-        
-    }
-    
     func connectionWasTerminated(connection:InboundNearbyConnection, error:Error?) {
         activeConnections.removeValue(forKey: connection.id)
         if let error=error{
@@ -187,11 +131,6 @@ class NearbyConnectionManager : NSObject, NetServiceDelegate, InboundNearbyConne
             UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: "transferError_"+connection.id, content: notificationContent, trigger: nil))
         }
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: ["transfer_"+connection.id])
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        activeConnections[response.notification.request.content.userInfo["transferID"]! as! String]?.submitUserConsent(accepted: response.actionIdentifier=="ACCEPT")
-        completionHandler()
     }
 }
 

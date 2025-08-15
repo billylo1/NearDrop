@@ -56,31 +56,7 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SRA-Qz-1fY">
-                                <rect key="frame" x="18" y="183" width="200" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Show incomming file request as " id="Egw-5J-fzz">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ixf-AL-frr">
-                                <rect key="frame" x="244" y="177" width="212" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="UZM-Vw-1Bm">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <objectValues>
-                                        <string>Popup Dialog</string>
-                                        <string>Notification</string>
-                                    </objectValues>
-                                </comboBoxCell>
-                                <connections>
-                                    <action selector="onTypeChange:" target="qKK-QS-zAr" id="DzC-nI-d61"/>
-                                </connections>
-                            </comboBox>
+
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e15-WN-QE0">
                                 <rect key="frame" x="18" y="155" width="104" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -90,17 +66,7 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K65-N7-dF6">
-                                <rect key="frame" x="20" y="206" width="435" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Automatically accept all files" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="Bmp-6p-YgB">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="onAcceptAllChanged:" target="TJO-Wh-x14" id="oUo-Y2-zSG"/>
-                                </connections>
-                            </button>
+
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eoC-og-lRP">
                                 <rect key="frame" x="245" y="150" width="208" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
@@ -129,8 +95,7 @@ Gw
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="cbAlertType" destination="ixf-AL-frr" id="EyG-rT-Tlo"/>
-                        <outlet property="cbAutoAcceptFiles" destination="K65-N7-dF6" id="TFm-u1-5je"/>
+
                         <outlet property="cbAutoOpenFiles" destination="V0W-Hw-U6K" id="vAi-MQ-9aX"/>
                         <outlet property="cbAutoOpenURL" destination="kMZ-8I-hi7" id="e7g-cP-wz8"/>
                         <outlet property="cbLaunchAtLogin" destination="a8B-zs-ehC" id="RxT-C3-D1B"/>

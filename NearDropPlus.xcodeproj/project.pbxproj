@@ -19,7 +19,6 @@
 		07EF25F329EA0A0100860D1B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07EF25F229EA0A0100860D1B /* Storyboard.storyboard */; };
 		07EF25FD29EA0F5600860D1B /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EF25FC29EA0F5600860D1B /* PreferencesViewController.swift */; };
 		698DFAE629E2F91A0064F247 /* NearbyConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698DFAE529E2F91A0064F247 /* NearbyConnection.swift */; };
-		698DFB0329E362140064F247 /* NDNotificationCenterHackery.m in Sources */ = {isa = PBXBuildFile; fileRef = 698DFB0229E362140064F247 /* NDNotificationCenterHackery.m */; };
 		69D2C32D29E77F2200EC7E30 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69D2C32B29E77F2200EC7E30 /* Localizable.strings */; };
 		69D2C32F29E7898C00EC7E30 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D2C32E29E7898C00EC7E30 /* MainMenu.xib */; };
 		69D2C33829E78DF400EC7E30 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 69D2C33629E78DF400EC7E30 /* Localizable.stringsdict */; };
@@ -267,7 +266,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					69DA9A0D29E0BF5100A442DA = {
 						CreatedOnToolsVersion = 14.3;
@@ -326,7 +325,6 @@
 				074FEF712A2D7A38001A6CA2 /* URLViewController.swift in Sources */,
 				076A28D92A2ED68F00C97ADB /* BaseViewController.swift in Sources */,
 				074FEF6F2A2D780F001A6CA2 /* TextViewPresenter.swift in Sources */,
-				698DFB0329E362140064F247 /* NDNotificationCenterHackery.m in Sources */,
 				69DA9A2329E17F0400A442DA /* InboundNearbyConnection.swift in Sources */,
 				69DA9A1F29E0C0B300A442DA /* NearbyConnectionManager.swift in Sources */,
 				074FEF6C2A2D750D001A6CA2 /* TextViewController.swift in Sources */,
@@ -401,9 +399,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = X5J5T5UT6J;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -462,9 +463,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = X5J5T5UT6J;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -489,14 +493,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = NearDropPlus/NearDrop.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 20;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NearDropPlus/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "NearDrop Plus";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -507,8 +512,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rayadams.neardropadv;
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = org.evergreenlabs.neardropplus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "NearDropPlus/NearDrop-Bridging-Header.h";
@@ -524,14 +529,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = NearDropPlus/NearDrop.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 20;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NearDropPlus/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "NearDrop Plus";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -542,8 +548,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rayadams.neardropadv;
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = org.evergreenlabs.neardropplus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "NearDropPlus/NearDrop-Bridging-Header.h";

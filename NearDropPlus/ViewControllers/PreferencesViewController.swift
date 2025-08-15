@@ -78,3 +78,20 @@ class PreferencesViewController: NSViewController {
     }
     
 }
+
+class ClickableTextField: NSTextField {
+    override func mouseUp(with event: NSEvent) {
+        // Your custom action here
+        print("Text field was clicked!")
+        if let link = self.placeholderString {
+            // open link
+            NSWorkspace.shared.open(URL(string: link)!)
+            
+        } else {
+            print("missing placeholder string")
+        }
+
+        // Optionally, call super to maintain default behavior
+        super.mouseUp(with: event)
+    }
+}

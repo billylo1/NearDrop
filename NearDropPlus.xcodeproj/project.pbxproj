@@ -72,8 +72,6 @@
 		698DFAED29E353220064F247 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		698DFAEF29E353220064F247 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		698DFB0029E362140064F247 /* NearDrop-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NearDrop-Bridging-Header.h"; sourceTree = "<group>"; };
-		698DFB0129E362140064F247 /* NDNotificationCenterHackery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NDNotificationCenterHackery.h; sourceTree = "<group>"; };
-		698DFB0229E362140064F247 /* NDNotificationCenterHackery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NDNotificationCenterHackery.m; sourceTree = "<group>"; };
 		69D2C32C29E77F2200EC7E30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		69D2C32E29E7898C00EC7E30 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		69D2C33029E789AF00EC7E30 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -129,15 +127,6 @@
 				076A28D62A2ED52B00C97ADB /* GlobalWindowManager.swift */,
 			);
 			path = Presenters;
-			sourceTree = "<group>";
-		};
-		07EF25E829E9EDA700860D1B /* UNMutableNotification */ = {
-			isa = PBXGroup;
-			children = (
-				698DFB0129E362140064F247 /* NDNotificationCenterHackery.h */,
-				698DFB0229E362140064F247 /* NDNotificationCenterHackery.m */,
-			);
-			path = UNMutableNotification;
 			sourceTree = "<group>";
 		};
 		07EF25E929E9EE4C00860D1B /* Helpers */ = {
@@ -204,7 +193,6 @@
 				07EF25E929E9EE4C00860D1B /* Helpers */,
 				69DA9A2729E18CB500A442DA /* Protobuf */,
 				070C61FC2A2D4B590084EA6C /* ProtobufSource */,
-				07EF25E829E9EDA700860D1B /* UNMutableNotification */,
 				69DA9A1129E0BF5100A442DA /* AppDelegate.swift */,
 				69DA9A1329E0BF5200A442DA /* Assets.xcassets */,
 				69DA9A1E29E0C0B300A442DA /* NearbyConnectionManager.swift */,
@@ -496,7 +484,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NearDropPlus/Info.plist;
@@ -512,7 +500,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.evergreenlabs.neardropplus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -532,7 +520,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NearDropPlus/Info.plist;
@@ -548,7 +536,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.evergreenlabs.neardropplus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

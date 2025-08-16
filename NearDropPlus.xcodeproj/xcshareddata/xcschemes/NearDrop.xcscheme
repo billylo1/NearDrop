@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "69DA9A0D29E0BF5100A442DA"
-               BuildableName = "NearDropPlus.app"
-               BlueprintName = "NearDropPlus"
+               BuildableName = "QuickShare.app"
+               BlueprintName = "QuickShare"
                ReferencedContainer = "container:NearDropPlus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,8 +44,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "69DA9A0D29E0BF5100A442DA"
-            BuildableName = "NearDropPlus.app"
-            BlueprintName = "NearDropPlus"
+            BuildableName = "QuickShare.app"
+            BlueprintName = "QuickShare"
             ReferencedContainer = "container:NearDropPlus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,8 +61,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "69DA9A0D29E0BF5100A442DA"
-            BuildableName = "NearDropPlus.app"
-            BlueprintName = "NearDropPlus"
+            BuildableName = "QuickShare.app"
+            BlueprintName = "QuickShare"
             ReferencedContainer = "container:NearDropPlus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -72,6 +72,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "QuickShare"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

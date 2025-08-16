@@ -71,13 +71,12 @@
 		698DFAE529E2F91A0064F247 /* NearbyConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyConnection.swift; sourceTree = "<group>"; };
 		698DFAED29E353220064F247 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		698DFAEF29E353220064F247 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
-		698DFB0029E362140064F247 /* NearDrop-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NearDrop-Bridging-Header.h"; sourceTree = "<group>"; };
 		69D2C32C29E77F2200EC7E30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		69D2C32E29E7898C00EC7E30 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		69D2C33029E789AF00EC7E30 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		69D2C33729E78DF400EC7E30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		69D2C33929E78DFD00EC7E30 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		69DA9A0E29E0BF5100A442DA /* NearDropPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearDropPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		69DA9A0E29E0BF5100A442DA /* QuickShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69DA9A1129E0BF5100A442DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69DA9A1329E0BF5200A442DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		69DA9A1E29E0C0B300A442DA /* NearbyConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyConnectionManager.swift; sourceTree = "<group>"; };
@@ -89,6 +88,7 @@
 		69DA9A2B29E18CB500A442DA /* offline_wire_formats.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = offline_wire_formats.pb.swift; sourceTree = "<group>"; };
 		69DA9A2C29E18CB500A442DA /* securegcm.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = securegcm.pb.swift; sourceTree = "<group>"; };
 		69DA9A2D29E18CB500A442DA /* securemessage.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = securemessage.pb.swift; sourceTree = "<group>"; };
+		BDCF770E2E50B0D8005ADEE0 /* QuickShare-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QuickShare-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +178,7 @@
 		69DA9A0F29E0BF5100A442DA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				69DA9A0E29E0BF5100A442DA /* NearDropPlus.app */,
+				69DA9A0E29E0BF5100A442DA /* QuickShare.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +186,7 @@
 		69DA9A1029E0BF5100A442DA /* NearDropPlus */ = {
 			isa = PBXGroup;
 			children = (
+				BDCF770E2E50B0D8005ADEE0 /* QuickShare-Bridging-Header.h */,
 				07EDD1532A671F1F00A86626 /* NearDrop.entitlements */,
 				074FEF6D2A2D77FF001A6CA2 /* Presenters */,
 				07EF25F129EA09F500860D1B /* Storyboard */,
@@ -201,7 +202,6 @@
 				69DA9A2229E17F0400A442DA /* InboundNearbyConnection.swift */,
 				698DFAE529E2F91A0064F247 /* NearbyConnection.swift */,
 				69DA9A2029E0CC4E00A442DA /* Data+Extensions.swift */,
-				698DFB0029E362140064F247 /* NearDrop-Bridging-Header.h */,
 				69D2C32E29E7898C00EC7E30 /* MainMenu.xib */,
 			);
 			path = NearDropPlus;
@@ -223,9 +223,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		69DA9A0D29E0BF5100A442DA /* NearDropPlus */ = {
+		69DA9A0D29E0BF5100A442DA /* QuickShare */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 69DA9A1B29E0BF5200A442DA /* Build configuration list for PBXNativeTarget "NearDropPlus" */;
+			buildConfigurationList = 69DA9A1B29E0BF5200A442DA /* Build configuration list for PBXNativeTarget "QuickShare" */;
 			buildPhases = (
 				69DA9A0A29E0BF5100A442DA /* Sources */,
 				69DA9A0B29E0BF5100A442DA /* Frameworks */,
@@ -236,14 +236,14 @@
 			);
 			dependencies = (
 			);
-			name = NearDropPlus;
+			name = QuickShare;
 			packageProductDependencies = (
 				69DA9A2529E189EF00A442DA /* SwiftProtobuf */,
 				69DA9A3529E1994C00A442DA /* SwiftECC */,
 				076FB1182A2BDC7000FE62AB /* LaunchAtLogin */,
 			);
 			productName = NearDrop;
-			productReference = 69DA9A0E29E0BF5100A442DA /* NearDropPlus.app */;
+			productReference = 69DA9A0E29E0BF5100A442DA /* QuickShare.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -281,7 +281,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				69DA9A0D29E0BF5100A442DA /* NearDropPlus */,
+				69DA9A0D29E0BF5100A442DA /* QuickShare */,
 			);
 		};
 /* End PBXProject section */
@@ -484,11 +484,11 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NearDropPlus/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "NearDrop Plus";
+				INFOPLIST_KEY_CFBundleDisplayName = "QuickShare for Mac";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
@@ -500,11 +500,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.evergreenlabs.neardropplus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "NearDropPlus/NearDrop-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "NearDropPlus/QuickShare-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -520,11 +520,11 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NearDropPlus/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "NearDrop Plus";
+				INFOPLIST_KEY_CFBundleDisplayName = "QuickShare for Mac";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
@@ -536,11 +536,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.evergreenlabs.neardropplus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "NearDropPlus/NearDrop-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "NearDropPlus/QuickShare-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -557,7 +557,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		69DA9A1B29E0BF5200A442DA /* Build configuration list for PBXNativeTarget "NearDropPlus" */ = {
+		69DA9A1B29E0BF5200A442DA /* Build configuration list for PBXNativeTarget "QuickShare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				69DA9A1C29E0BF5200A442DA /* Debug */,

@@ -31,7 +31,7 @@ Download .zip file from release page. Extract it and copy NerDropPlus.app to App
 
 ## Credits
 
-OSS support from ngrok.com
+OSS support from [ngrok.com]
 
 ## Contributing
 

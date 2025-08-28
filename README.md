@@ -29,6 +29,10 @@ Since author does not want these changes, I will keep them in this repo.
 
 Download .zip file from release page. Extract it and copy NerDropPlus.app to Applications folder.
 
+## Credits
+
+OSS support from ngrok.com
+
 ## Contributing
 
 - Try to follow common patterns
